@@ -24,7 +24,7 @@ import com.cashfree.pg.core.api.wallet.CFWallet;
 import com.cashfree.pg.core.api.wallet.CFWalletPayment;
 
 public class ElementCheckoutActivity extends AppCompatActivity  implements CFCheckoutResponseCallback {
-
+    // Go to https://docs.cashfree.com/docs/31-initiate-payment-native-checkout for the documentation
     String orderID = "ORDER_ID";
     String token = "TOKEN";
     CFSession.Environment cfEnvironment = CFSession.Environment.PRODUCTION;
