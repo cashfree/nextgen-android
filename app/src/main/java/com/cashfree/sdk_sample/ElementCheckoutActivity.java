@@ -222,13 +222,12 @@ public class ElementCheckoutActivity extends AppCompatActivity  implements CFChe
 
 
     public void doUPICollectPayment(View view) {
-        if (hasValidUPICollectInputs())
-            initiatePayment(collectMode, token);
+        initiatePayment(collectMode, token);
     }
 
     public void doUPIIntentPayment(View view) {
-        if (hasValidUPIIntentInputs())
-            initiatePayment(intentMode, upiAppPackage);
+
+        initiatePayment(intentMode, upiAppPackage);
     }
 
     private void initiatePayment(CFUPI.Mode mode, String id) {
@@ -252,19 +251,4 @@ public class ElementCheckoutActivity extends AppCompatActivity  implements CFChe
         }
     }
 
-    public boolean hasValidUPICollectInputs() throws IllegalArgumentException {
-        if (upiVpa.length() < 3) {
-            Log.e("UPI COLLECT VALIDATION", "Enter a Valid UPI ID");
-            return false;
-        }
-        return true;
-    }
-
-    public boolean hasValidUPIIntentInputs() throws IllegalArgumentException {
-        if (upiVpa.length() < 3) {
-            Log.e("UPI INTENT VALIDATION", "Enter a Valid UPI ID");
-            return false;
-        }
-        return true;
-    }
 }
