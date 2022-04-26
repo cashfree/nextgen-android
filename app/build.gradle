@@ -40,4 +40,9 @@ dependencies {
     implementation 'com.cashfree.pg:api:1.0.0'
     implementation 'com.cashfree.pg:core:1.0.0'
     implementation 'com.cashfree.pg:ui:1.0.0'
+
+    implementation 'com.cashfree.pg:network:1.0.0'
+    implementation 'com.cashfree.pg:base:1.0.0'
+    implementation 'com.cashfree.pg:analytics:1.0.0'
+    implementation 'com.cashfree.pg:image-caching:1.0.0'
 }

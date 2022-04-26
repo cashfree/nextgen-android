@@ -17,6 +17,8 @@ import com.cashfree.pg.core.api.emicard.CFEMICardPayment;
 import com.cashfree.pg.core.api.exception.CFException;
 import com.cashfree.pg.core.api.netbanking.CFNetBanking;
 import com.cashfree.pg.core.api.netbanking.CFNetBankingPayment;
+import com.cashfree.pg.core.api.paylater.CFPayLater;
+import com.cashfree.pg.core.api.paylater.CFPayLaterPayment;
 import com.cashfree.pg.core.api.upi.CFUPI;
 import com.cashfree.pg.core.api.upi.CFUPIPayment;
 import com.cashfree.pg.core.api.utils.CFErrorResponse;
@@ -51,6 +53,9 @@ public class ElementCheckoutActivity extends AppCompatActivity  implements CFChe
     //Wallet mode
     public String channel = "phonepe";
     public String phone = "9871043819";
+
+    //Pay later mode
+    public String payLaterChannel = "lazypay";
 
     // Net Banking mode
     public int bankCode = 3003;
@@ -201,6 +206,28 @@ public class ElementCheckoutActivity extends AppCompatActivity  implements CFChe
                         .setCfWallet(cfWallet)
                         .build();
                 CFCorePaymentGatewayService.getInstance().doPayment(ElementCheckoutActivity.this, cfWalletPayment);
+            } catch (CFException exception) {
+                exception.printStackTrace();
+            }
+    }
+
+    public void doPayLaterPayment(View view) {
+        if (hasValidWalletPaymentInputs())
+            try {
+                CFSession cfSession = new CFSession.CFSessionBuilder()
+                        .setEnvironment(cfEnvironment)
+                        .setOrderToken(token)
+                        .setOrderId(orderID)
+                        .build();
+                CFPayLater cfPayLater = new CFPayLater.CFPayLaterBuilder()
+                        .setProvider(payLaterChannel)
+                        .setPhone(phone)
+                        .build();
+                CFPayLaterPayment cfPayLaterPayment = new CFPayLaterPayment.CFPayLaterPaymentBuilder()
+                        .setSession(cfSession)
+                        .setCfPayLater(cfPayLater)
+                        .build();
+                CFCorePaymentGatewayService.getInstance().doPayment(ElementCheckoutActivity.this, cfPayLaterPayment);
             } catch (CFException exception) {
                 exception.printStackTrace();
             }

@@ -7,4 +7,5 @@
     <string name="card_emi">CARD EMI</string>
     <string name="netbanking">Net Banking</string>
     <string name="wallet">Wallets</string>
+    <string name="payLater">Pay Later</string>
 </resources>
