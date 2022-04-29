@@ -3,8 +3,10 @@ package com.cashfree.sdk_sample;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.cashfree.pg.api.CFPaymentGatewayService;
 import com.cashfree.pg.core.api.CFCorePaymentGatewayService;
@@ -32,11 +34,11 @@ public class ElementCheckoutActivity extends AppCompatActivity  implements CFChe
     CFSession.Environment cfEnvironment = CFSession.Environment.PRODUCTION;
 
     //Card Payment Inputs
-    public String cardNumber = "4585340002077527";
-    public String cardMM = "08";
-    public String cardYY = "25";
-    public String cardHolderName = "Aabhas Jindal";
-    public String cardCVV = "950";
+    public String cardNumber = "4585340002077590";
+    public String cardMM = "09";
+    public String cardYY = "26";
+    public String cardHolderName = "John Doe";
+    public String cardCVV = "850";
 
     // Card EMI Inputs
     public String bankName = "Axis Bank";
@@ -52,7 +54,7 @@ public class ElementCheckoutActivity extends AppCompatActivity  implements CFChe
 
     //Wallet mode
     public String channel = "phonepe";
-    public String phone = "9871043819";
+    public String phone = "9999999999";
 
     //Pay later mode
     public String payLaterChannel = "lazypay";
@@ -82,6 +84,14 @@ public class ElementCheckoutActivity extends AppCompatActivity  implements CFChe
     }
 
     public void doCardPayment(View view) {
+        if (orderID.equals("ORDER_ID") || TextUtils.isEmpty(orderID)) {
+            Toast.makeText(this,"Please set the orderId (DropCheckoutActivity.class,  line: 32)", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (token.equals("TOKEN") || TextUtils.isEmpty(token)) {
+            Toast.makeText(this,"Please set the token (DropCheckoutActivity.class,  line: 33)", Toast.LENGTH_SHORT).show();
+            return;
+        }
         try {
             CFSession cfSession = new CFSession.CFSessionBuilder()
                     .setEnvironment(cfEnvironment)

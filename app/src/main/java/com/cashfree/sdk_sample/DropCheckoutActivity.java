@@ -2,7 +2,9 @@ package com.cashfree.sdk_sample;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -54,6 +56,16 @@ public class DropCheckoutActivity extends AppCompatActivity  implements  CFCheck
     }
 
     public void doDropCheckoutPayment() {
+        if (orderID.equals("ORDER_ID") || TextUtils.isEmpty(orderID)) {
+            Toast.makeText(this,"Please set the orderId (DropCheckoutActivity.class,  line: 22)", Toast.LENGTH_SHORT).show();
+            finish();
+            return;
+        }
+        if (token.equals("TOKEN") || TextUtils.isEmpty(token)) {
+            Toast.makeText(this,"Please set the token (DropCheckoutActivity.class,  line: 23)", Toast.LENGTH_SHORT).show();
+            finish();
+            return;
+        }
         try {
             CFSession cfSession = new CFSession.CFSessionBuilder()
                     .setEnvironment(cfEnvironment)
