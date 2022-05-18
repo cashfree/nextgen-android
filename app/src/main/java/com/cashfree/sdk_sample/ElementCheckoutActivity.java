@@ -27,7 +27,7 @@ import com.cashfree.pg.core.api.utils.CFErrorResponse;
 import com.cashfree.pg.core.api.wallet.CFWallet;
 import com.cashfree.pg.core.api.wallet.CFWalletPayment;
 
-public class ElementCheckoutActivity extends AppCompatActivity  implements CFCheckoutResponseCallback {
+public class ElementCheckoutActivity extends AppCompatActivity implements CFCheckoutResponseCallback {
     // Go to https://docs.cashfree.com/docs/31-initiate-payment-native-checkout for the documentation
     String orderID = "ORDER_ID";
     String token = "TOKEN";
@@ -85,11 +85,11 @@ public class ElementCheckoutActivity extends AppCompatActivity  implements CFChe
 
     public void doCardPayment(View view) {
         if (orderID.equals("ORDER_ID") || TextUtils.isEmpty(orderID)) {
-            Toast.makeText(this,"Please set the orderId (DropCheckoutActivity.class,  line: 32)", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please set the orderId (DropCheckoutActivity.class,  line: 32)", Toast.LENGTH_SHORT).show();
             return;
         }
         if (token.equals("TOKEN") || TextUtils.isEmpty(token)) {
-            Toast.makeText(this,"Please set the token (DropCheckoutActivity.class,  line: 33)", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please set the token (DropCheckoutActivity.class,  line: 33)", Toast.LENGTH_SHORT).show();
             return;
         }
         try {
@@ -140,7 +140,6 @@ public class ElementCheckoutActivity extends AppCompatActivity  implements CFChe
     }
 
 
-
     public void doCardEMIPayment(View view) {
         if (hasValidCardInputs())
             try {
@@ -167,7 +166,6 @@ public class ElementCheckoutActivity extends AppCompatActivity  implements CFChe
                 exception.printStackTrace();
             }
     }
-
 
 
     public void doNetBankingPayment(View view) {
@@ -257,13 +255,11 @@ public class ElementCheckoutActivity extends AppCompatActivity  implements CFChe
     }
 
 
-
     public void doUPICollectPayment(View view) {
-        initiatePayment(collectMode, token);
+        initiatePayment(collectMode, upiVpa);
     }
 
     public void doUPIIntentPayment(View view) {
-
         initiatePayment(intentMode, upiAppPackage);
     }
 

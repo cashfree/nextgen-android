@@ -77,9 +77,9 @@ public class DropCheckoutActivity extends AppCompatActivity  implements  CFCheck
                     .add(CFPaymentComponent.CFPaymentModes.UPI)
                     .build();
             CFTheme cfTheme = new CFTheme.CFThemeBuilder()
-                    .setNavigationBarBackgroundColor("#fc2678")
+                    .setNavigationBarBackgroundColor("#006EE1")
                     .setNavigationBarTextColor("#ffffff")
-                    .setButtonBackgroundColor("#fc2678")
+                    .setButtonBackgroundColor("#006EE1")
                     .setButtonTextColor("#ffffff")
                     .setPrimaryTextColor("#000000")
                     .setSecondaryTextColor("#000000")
