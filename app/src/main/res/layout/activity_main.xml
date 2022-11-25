@@ -29,6 +29,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="startElementCheckout"
-        android:text="Element Checkout"/>
+        android:text="Element Checkout"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+
+    <Button
+        android:id="@+id/upiIntentCheckoutBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="UPI Intent Checkout"
+        android:onClick="startUPIIntentCheckout"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        />
+
+    <Button
+        android:id="@+id/webCheckoutBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="startWebCheckout"
+        android:text="Web Checkout"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

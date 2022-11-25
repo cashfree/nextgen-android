@@ -5,8 +5,12 @@
     <queries>
         <intent>
             <action android:name="android.intent.action.VIEW" />
-            <data android:scheme="upi" android:host="pay"/>
+
+            <data
+                android:host="pay"
+                android:scheme="upi" />
         </intent>
+
         <package android:name="com.android.chrome" />
     </queries>
 
@@ -17,6 +21,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CashfreeAndroidSample">
+        <activity
+            android:name=".WebCheckoutActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UPIIntentActivity"
+            android:exported="false" />
         <activity
             android:name=".DropCheckoutActivity"
             android:exported="false" />

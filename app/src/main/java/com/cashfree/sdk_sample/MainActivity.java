@@ -21,4 +21,12 @@ public class MainActivity extends AppCompatActivity {
     public void startElementCheckout(View view) {
         startActivity(new Intent(MainActivity.this, ElementCheckoutActivity.class));
     }
+
+    public void startUPIIntentCheckout(View view) {
+        startActivity(new Intent(MainActivity.this, ElementCheckoutActivity.class));
+    }
+
+    public void startWebCheckout(View view) {
+        startActivity(new Intent(MainActivity.this, ElementCheckoutActivity.class));
+    }
 }
