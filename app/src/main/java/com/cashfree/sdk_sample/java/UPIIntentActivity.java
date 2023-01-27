@@ -1,4 +1,4 @@
-package com.cashfree.sdk_sample;
+package com.cashfree.sdk_sample.java;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,14 +13,17 @@ import com.cashfree.pg.core.api.CFSession;
 import com.cashfree.pg.core.api.callback.CFCheckoutResponseCallback;
 import com.cashfree.pg.core.api.exception.CFException;
 import com.cashfree.pg.core.api.utils.CFErrorResponse;
-import com.cashfree.pg.core.api.webcheckout.CFWebCheckoutPayment;
-import com.cashfree.pg.core.api.webcheckout.CFWebCheckoutTheme;
+import com.cashfree.pg.ui.api.upi.intent.CFIntentTheme;
+import com.cashfree.pg.ui.api.upi.intent.CFUPIIntentCheckout;
+import com.cashfree.pg.ui.api.upi.intent.CFUPIIntentCheckoutPayment;
+import com.cashfree.sdk_sample.Config;
+import com.cashfree.sdk_sample.R;
 
-public class WebCheckoutActivity extends AppCompatActivity implements CFCheckoutResponseCallback {
-
-    String orderID = "ORDER_ID";
-    String paymentSessionID = "PAYMENT_SESSION_ID";
-    CFSession.Environment cfEnvironment = CFSession.Environment.PRODUCTION;
+public class UPIIntentActivity extends AppCompatActivity implements CFCheckoutResponseCallback {
+    Config config = new Config();
+    String orderID = config.getOrderID();
+    String paymentSessionID = config.getPaymentSessionID();
+    CFSession.Environment cfEnvironment = config.getEnvironment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,12 +59,12 @@ public class WebCheckoutActivity extends AppCompatActivity implements CFCheckout
 
     public void doDropCheckoutPayment() {
         if (orderID.equals("ORDER_ID") || TextUtils.isEmpty(orderID)) {
-            Toast.makeText(this,"Please set the orderId (DropCheckoutActivity.class,  line: 21)", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Please set the orderId (DropCheckoutActivity.class,  line: 26)", Toast.LENGTH_SHORT).show();
             finish();
             return;
         }
-        if (paymentSessionID.equals("PAYMENT_SESSION_ID") || TextUtils.isEmpty(paymentSessionID)) {
-            Toast.makeText(this,"Please set the payment_session_id (webCheckoutActivity.class,  line: 22)", Toast.LENGTH_SHORT).show();
+        if (paymentSessionID.equals("TOKEN") || TextUtils.isEmpty(paymentSessionID)) {
+            Toast.makeText(this,"Please set the token (DropCheckoutActivity.class,  line: 27)", Toast.LENGTH_SHORT).show();
             finish();
             return;
         }
@@ -71,17 +74,24 @@ public class WebCheckoutActivity extends AppCompatActivity implements CFCheckout
                     .setPaymentSessionID(paymentSessionID)
                     .setOrderId(orderID)
                     .build();
-            CFWebCheckoutTheme cfTheme = new CFWebCheckoutTheme.CFWebCheckoutThemeBuilder()
-                    .setNavigationBarBackgroundColor("#000000")
-                    .setNavigationBarTextColor("#FFFFFF")
+            CFIntentTheme cfTheme = new CFIntentTheme.CFIntentThemeBuilder()
+                    .setPrimaryTextColor("#000000")
+                    .setBackgroundColor("#FFFFFF")
                     .build();
-            CFWebCheckoutPayment cfWebCheckoutPayment = new CFWebCheckoutPayment.CFWebCheckoutPaymentBuilder()
+            CFUPIIntentCheckout cfupiIntentCheckout = new CFUPIIntentCheckout.CFUPIIntentBuilder()
+                    // Use either the enum or the application package names to order the UPI apps as per your needed
+                    // Remove both if you want to use the default order which cashfree provides based on the popularity
+                    // NOTE - only one is needed setOrder or setOrderUsingPackageName
+//                                        .setOrderUsingPackageName(Arrays.asList("com.dreamplug.androidapp", "in.org.npci.upiapp"))
+//                                        .setOrder(Arrays.asList(CFUPIIntentCheckout.CFUPIApps.BHIM, CFUPIIntentCheckout.CFUPIApps.PHONEPE))
+                    .build();
+            CFUPIIntentCheckoutPayment cfupiIntentCheckoutPayment = new CFUPIIntentCheckoutPayment.CFUPIIntentPaymentBuilder()
                     .setSession(cfSession)
-                    .setCFWebCheckoutUITheme(new CFWebCheckoutTheme.CFWebCheckoutThemeBuilder().build())
+                    .setCfUPIIntentCheckout(cfupiIntentCheckout)
+                    .setCfIntentTheme(cfTheme)
                     .build();
-            CFPaymentGatewayService.getInstance().doPayment(this, cfWebCheckoutPayment);
             CFPaymentGatewayService gatewayService = CFPaymentGatewayService.getInstance();
-            gatewayService.doPayment(WebCheckoutActivity.this, cfWebCheckoutPayment);
+            gatewayService.doPayment(UPIIntentActivity.this, cfupiIntentCheckoutPayment);
         } catch (CFException exception) {
             exception.printStackTrace();
         }

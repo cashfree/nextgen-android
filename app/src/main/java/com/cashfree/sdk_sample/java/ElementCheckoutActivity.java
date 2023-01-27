@@ -1,4 +1,4 @@
-package com.cashfree.sdk_sample;
+package com.cashfree.sdk_sample.java;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,41 +26,44 @@ import com.cashfree.pg.core.api.upi.CFUPIPayment;
 import com.cashfree.pg.core.api.utils.CFErrorResponse;
 import com.cashfree.pg.core.api.wallet.CFWallet;
 import com.cashfree.pg.core.api.wallet.CFWalletPayment;
+import com.cashfree.sdk_sample.Config;
+import com.cashfree.sdk_sample.R;
 
 public class ElementCheckoutActivity extends AppCompatActivity implements CFCheckoutResponseCallback {
     // Go to https://docs.cashfree.com/docs/31-initiate-payment-native-checkout for the documentation
-    String orderID = "ORDER_ID";
-    String token = "TOKEN";
-    CFSession.Environment cfEnvironment = CFSession.Environment.PRODUCTION;
+    Config config = new Config();
+    String orderID = config.getOrderID();
+    String paymentSessionID = config.getPaymentSessionID();
+    CFSession.Environment cfEnvironment = config.getEnvironment();
 
     //Card Payment Inputs
-    public String cardNumber = "4585340002077590";
-    public String cardMM = "09";
-    public String cardYY = "26";
-    public String cardHolderName = "John Doe";
-    public String cardCVV = "850";
+    private final String cardNumber = config.getCardNumber();
+    private final String cardMM = config.getCardMM();
+    private final String cardYY = config.getCardYY();
+    private final String cardHolderName = config.getCardHolderName();
+    private final String cardCVV = config.getCardCVV();
 
     // Card EMI Inputs
-    public String bankName = "Axis Bank";
-    public int emiTenure = 3;
+    private final String bankName = config.getBankName();
+    private final int emiTenure = config.getEmiTenure();
 
     //UPI Collect mode
-    public CFUPI.Mode collectMode = CFUPI.Mode.COLLECT;
-    public String upiVpa = "testsuccess@gocash";
+    private final CFUPI.Mode collectMode = config.getCollectMode();
+    private final String upiVpa = config.getUpiVpa();
 
     // UPI Intent mode
-    public CFUPI.Mode intentMode = CFUPI.Mode.INTENT;
-    public String upiAppPackage = "com.google.android.apps.nbu.paisa.user";
+    private final CFUPI.Mode intentMode = config.getIntentMode();
+    private final String upiAppPackage = config.getUpiAppPackage();
 
     //Wallet mode
-    public String channel = "phonepe";
-    public String phone = "9999999999";
+    private final String channel = config.getChannel();
+    private final String phone = config.getPhone();
 
     //Pay later mode
-    public String payLaterChannel = "lazypay";
+    private final String payLaterChannel = config.getPayLaterChannel();
 
     // Net Banking mode
-    public int bankCode = 3003;
+    private final int bankCode = config.getBankCode();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,14 +91,14 @@ public class ElementCheckoutActivity extends AppCompatActivity implements CFChec
             Toast.makeText(this, "Please set the orderId (DropCheckoutActivity.class,  line: 32)", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (token.equals("TOKEN") || TextUtils.isEmpty(token)) {
-            Toast.makeText(this, "Please set the token (DropCheckoutActivity.class,  line: 33)", Toast.LENGTH_SHORT).show();
+        if (paymentSessionID.equals("TOKEN") || TextUtils.isEmpty(paymentSessionID)) {
+            Toast.makeText(this, "Please set the paymentSessionID (DropCheckoutActivity.class,  line: 33)", Toast.LENGTH_SHORT).show();
             return;
         }
         try {
             CFSession cfSession = new CFSession.CFSessionBuilder()
                     .setEnvironment(cfEnvironment)
-                    .setOrderToken(token)
+                    .setPaymentSessionID(paymentSessionID)
                     .setOrderId(orderID)
                     .build();
             CFCard cfCard = new CFCard.CFCardBuilder()
@@ -145,7 +148,7 @@ public class ElementCheckoutActivity extends AppCompatActivity implements CFChec
             try {
                 CFSession cfSession = new CFSession.CFSessionBuilder()
                         .setEnvironment(cfEnvironment)
-                        .setOrderToken(token)
+                        .setPaymentSessionID(paymentSessionID)
                         .setOrderId(orderID)
                         .build();
                 CFEMICard cfCard = new CFEMICard.CFEMICardBuilder()
@@ -173,7 +176,7 @@ public class ElementCheckoutActivity extends AppCompatActivity implements CFChec
             try {
                 CFSession cfSession = new CFSession.CFSessionBuilder()
                         .setEnvironment(cfEnvironment)
-                        .setOrderToken(token)
+                        .setPaymentSessionID(paymentSessionID)
                         .setOrderId(orderID)
                         .build();
                 CFNetBanking cfNetBanking = new CFNetBanking.CFNetBankingBuilder()
@@ -202,7 +205,7 @@ public class ElementCheckoutActivity extends AppCompatActivity implements CFChec
             try {
                 CFSession cfSession = new CFSession.CFSessionBuilder()
                         .setEnvironment(cfEnvironment)
-                        .setOrderToken(token)
+                        .setPaymentSessionID(paymentSessionID)
                         .setOrderId(orderID)
                         .build();
                 CFWallet cfWallet = new CFWallet.CFWalletBuilder()
@@ -224,7 +227,7 @@ public class ElementCheckoutActivity extends AppCompatActivity implements CFChec
             try {
                 CFSession cfSession = new CFSession.CFSessionBuilder()
                         .setEnvironment(cfEnvironment)
-                        .setOrderToken(token)
+                        .setPaymentSessionID(paymentSessionID)
                         .setOrderId(orderID)
                         .build();
                 CFPayLater cfPayLater = new CFPayLater.CFPayLaterBuilder()
@@ -267,7 +270,7 @@ public class ElementCheckoutActivity extends AppCompatActivity implements CFChec
         try {
             CFSession cfSession = new CFSession.CFSessionBuilder()
                     .setEnvironment(cfEnvironment)
-                    .setOrderToken(token)
+                    .setPaymentSessionID(paymentSessionID)
                     .setOrderId(orderID)
                     .build();
             CFUPI cfupi = new CFUPI.CFUPIBuilder()

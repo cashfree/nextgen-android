@@ -1,10 +1,12 @@
-package com.cashfree.sdk_sample;
+package com.cashfree.sdk_sample.java;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.cashfree.sdk_sample.R;
 
 public class MainActivity extends AppCompatActivity {
 

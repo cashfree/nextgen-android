@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.cashfree.sdk_sample">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <queries>
         <intent>
@@ -22,19 +22,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CashfreeAndroidSample">
         <activity
-            android:name=".WebCheckoutActivity"
+            android:name=".kotlin.WebCheckoutActivity"
             android:exported="false" />
         <activity
-            android:name=".UPIIntentActivity"
+            android:name=".kotlin.UPIIntentActivity"
             android:exported="false" />
         <activity
-            android:name=".DropCheckoutActivity"
+            android:name=".kotlin.DropCheckoutActivity"
             android:exported="false" />
         <activity
-            android:name=".ElementCheckoutActivity"
+            android:name=".kotlin.ElementCheckoutActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".kotlin.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,6 +42,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="cashfree_pg_logging_level"
+            android:value="2"
+            tools:replace="android:value" />
     </application>
 
 </manifest>
