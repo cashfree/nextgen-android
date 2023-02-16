@@ -1,4 +1,4 @@
-package com.cashfree.sdk_sample;
+package com.cashfree.sdk_sample.java;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,12 +16,14 @@ import com.cashfree.pg.core.api.exception.CFException;
 import com.cashfree.pg.core.api.utils.CFErrorResponse;
 import com.cashfree.pg.ui.api.CFDropCheckoutPayment;
 import com.cashfree.pg.ui.api.CFPaymentComponent;
+import com.cashfree.sdk_sample.Config;
+import com.cashfree.sdk_sample.R;
 
 public class DropCheckoutActivity extends AppCompatActivity  implements  CFCheckoutResponseCallback {
-
-    String orderID = "ORDER_ID";
-    String token = "TOKEN";
-    CFSession.Environment cfEnvironment = CFSession.Environment.PRODUCTION;
+    Config config = new Config();
+    String orderID = config.getOrderID();
+    String paymentSessionID = config.getPaymentSessionID();
+    CFSession.Environment cfEnvironment = config.getEnvironment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +63,7 @@ public class DropCheckoutActivity extends AppCompatActivity  implements  CFCheck
             finish();
             return;
         }
-        if (token.equals("TOKEN") || TextUtils.isEmpty(token)) {
+        if (paymentSessionID.equals("TOKEN") || TextUtils.isEmpty(paymentSessionID)) {
             Toast.makeText(this,"Please set the token (DropCheckoutActivity.class,  line: 23)", Toast.LENGTH_SHORT).show();
             finish();
             return;
@@ -69,7 +71,7 @@ public class DropCheckoutActivity extends AppCompatActivity  implements  CFCheck
         try {
             CFSession cfSession = new CFSession.CFSessionBuilder()
                     .setEnvironment(cfEnvironment)
-                    .setOrderToken(token)
+                    .setPaymentSessionID(paymentSessionID)
                     .setOrderId(orderID)
                     .build();
             CFPaymentComponent cfPaymentComponent = new CFPaymentComponent.CFPaymentComponentBuilder()
