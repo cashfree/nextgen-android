@@ -28,13 +28,13 @@
             android:name=".kotlin.UPIIntentActivity"
             android:exported="false" />
         <activity
-            android:name=".kotlin.DropCheckoutActivity"
+            android:name=".compose.DropCheckoutActivity"
             android:exported="false" />
         <activity
             android:name=".kotlin.ElementCheckoutActivity"
             android:exported="false" />
         <activity
-            android:name=".kotlin.MainActivity"
+            android:name=".compose.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
