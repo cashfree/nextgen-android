@@ -1,8 +1,5 @@
 name: Android Builder
-description: "Build App from the repo using github Actions!"
-branding:
-  icon: 'git-branch'  
-  color: 'red'
+
 on: [push]
 
 jobs:
