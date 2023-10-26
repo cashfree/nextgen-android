@@ -1,6 +1,7 @@
 # Cashfree Android SDK Sample
 
-![GitHub](https://img.shields.io/github/license/cashfree/nextgen-android) ![Discord](https://img.shields.io/discord/931125665669972018?label=discord) ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/cashfree/nextgen-android/master) ![GitHub release (with filter)](https://img.shields.io/github/v/release/cashfree/nextgen-android?label=latest) ![Maven Central](https://img.shields.io/maven-central/v/com.cashfree.pg/api) ![GitHub forks](https://img.shields.io/github/forks/cashfree/nextgen-android) [![Build Status](https://img.shields.io/endpoint.svg?label=build&url=https%3A%2F%2Factions-badge.atrox.dev%2Fcashfree%2Fnextgen-android%2Fbadge%3Fref%3Dmaster&style=flat)](https://actions-badge.atrox.dev/cashfree/nextgen-android/goto?ref=master)
+![GitHub](https://img.shields.io/github/license/cashfree/nextgen-android) ![Discord](https://img.shields.io/discord/931125665669972018?label=discord) ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/cashfree/nextgen-android/master) ![GitHub release (with filter)](https://img.shields.io/github/v/release/cashfree/nextgen-android?label=latest) ![Maven Central](https://img.shields.io/maven-central/v/com.cashfree.pg/api) ![GitHub forks](https://img.shields.io/github/forks/cashfree/nextgen-android) [![Build Status](https://img.shields.io/endpoint.svg?label=build&url=https%3A%2F%2Factions-badge.atrox.dev%2Fcashfree%2Fnextgen-android%2Fbadge%3Fref%3Dmaster&style=flat)](https://actions-badge.atrox.dev/cashfree/nextgen-android/goto?ref=master) ![GitHub Repo stars](https://img.shields.io/github/stars/cashfree/nextgen-android)
+
 
 ![Sample Banner Image](https://maven.cashfree.com/images/github-header-image.png)
 
