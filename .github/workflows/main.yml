@@ -1,0 +1,21 @@
+name: Android Builder
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - uses: actions/checkout@v1
+    - name: set up JDK 11
+      uses: actions/setup-java@v1
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        java-version: 11
+    - name: "Permission to gradle File"
+      run: chmod +x gradlew
+    - name: Build with Gradle
+      run: ./gradlew assemble
