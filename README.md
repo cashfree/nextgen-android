@@ -1,12 +1,34 @@
+# Cashfree Android SDK Sample
+
+![GitHub](https://img.shields.io/github/license/cashfree/nextgen-android) ![Discord](https://img.shields.io/discord/931125665669972018?label=discord) ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/cashfree/nextgen-android/master) ![GitHub release (with filter)](https://img.shields.io/github/v/release/cashfree/nextgen-android?label=latest) ![Maven Central](https://img.shields.io/maven-central/v/com.cashfree.pg/api) ![GitHub forks](https://img.shields.io/github/forks/cashfree/nextgen-android)
+
+![Sample Banner Image](https://maven.cashfree.com/images/github-header-image.png)
+
+## **Description** 
+
+Sample integration project for Cashfree Payment Gateway's Android SDK, facilitating seamless and secure payment processing within your Android application.
 
 
+## Documentation
 
-# Cashfree SDK Integration Steps
+| Please refer our official android documentation [here](https://docs.cashfree.com/docs/android-integration).
 
-### Please refer our official android documentation [here](https://docs.cashfree.com/docs/android-integration).
 
-### ChangeLog
-you can view the changelogs [here](https://docs.cashfree.com/docs/android_changelog)
+## Getting help
 
-### Discord
-Join our [discord server](https://discord.gg/znT6X45qDS) to instantly get connected
+If you have questions, concerns, bug reports, etc, you can reach out to us using one of the following 
+
+1. File an issue in this repository's Issue Tracker.
+2. Send a message in our discord channel. Join our [discord server](https://discord.gg/znT6X45qDS) to get connected instantly.
+3. Send an email to care@cashfree.com
+
+## Getting involved
+
+For general instructions on _how_ to contribute please refer to [CONTRIBUTING](CONTRIBUTING.md).
+
+
+----
+
+## Open source licensing and other misc info
+1. [LICENSE](https://github.com/cashfree/nextgen-android/blob/master/LICENSE.md)
+2. [CODE OF CONDUCT](https://github.com/cashfree/nextgen-android/blob/master/CODE_OF_CONDUCT.md)
