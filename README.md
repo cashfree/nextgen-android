@@ -12,6 +12,21 @@ Sample integration project for Cashfree Payment Gateway's Android SDK, facilitat
 
 ## Documentation
 
+The Cashfree Android SDK allows you to integrate Cashfree Payment Gateway into your application and start collecting payments from your customers. It has been designed to minimise the complexity of handling and integrating payments in your Android project.
+
+### Getting Started
+
+Please replace the values for orderId, token (Payment Session ID) and environment values in the Activity class of the respective payment mode that you are trying out and run the app module.
+
+```kotlin
+
+    var orderID = "ORDER_ID" // replace with actual value
+    var paymentSessionID = "PAYMENT_SESSION_ID" // replace with actual value
+    var cfEnvironment = CFSession.Environment.PRODUCTION // replace with actual value
+
+```
+
+
 | Please refer our official android documentation [here](https://docs.cashfree.com/docs/android-integration).
 
 
