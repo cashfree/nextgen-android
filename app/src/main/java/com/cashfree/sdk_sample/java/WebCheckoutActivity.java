@@ -81,7 +81,6 @@ public class WebCheckoutActivity extends AppCompatActivity implements CFCheckout
                     .setSession(cfSession)
                     .setCFWebCheckoutUITheme(new CFWebCheckoutTheme.CFWebCheckoutThemeBuilder().build())
                     .build();
-            CFPaymentGatewayService.getInstance().doPayment(this, cfWebCheckoutPayment);
             CFPaymentGatewayService gatewayService = CFPaymentGatewayService.getInstance();
             gatewayService.doPayment(WebCheckoutActivity.this, cfWebCheckoutPayment);
         } catch (CFException exception) {
