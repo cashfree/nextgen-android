@@ -85,7 +85,6 @@ class WebCheckoutActivity : AppCompatActivity(), CFCheckoutResponseCallback {
                 .setSession(cfSession)
                 .setCFWebCheckoutUITheme(CFWebCheckoutThemeBuilder().build())
                 .build()
-            CFPaymentGatewayService.getInstance().doPayment(this, cfWebCheckoutPayment)
             val gatewayService = CFPaymentGatewayService.getInstance()
             gatewayService.doPayment(this@WebCheckoutActivity, cfWebCheckoutPayment)
         } catch (exception: CFException) {
