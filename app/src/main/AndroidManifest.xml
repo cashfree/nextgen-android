@@ -21,6 +21,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CashfreeAndroidSample">
+
+        <activity android:name=".java.DropCheckoutActivity"
+            android:exported="false"/>
+        <activity android:name=".java.ElementCheckoutActivity"
+            android:exported="false"/>
+        <activity android:name=".java.UPIIntentActivity"
+            android:exported="false"/>
+        <activity android:name=".java.WebCheckoutActivity"
+            android:exported="false"/>
+
         <activity
             android:name=".kotlin.WebCheckoutActivity"
             android:exported="false" />
@@ -28,13 +38,18 @@
             android:name=".kotlin.UPIIntentActivity"
             android:exported="false" />
         <activity
-            android:name=".compose.DropCheckoutActivity"
-            android:exported="false" />
-        <activity
             android:name=".kotlin.ElementCheckoutActivity"
             android:exported="false" />
         <activity
-            android:name=".compose.MainActivity"
+            android:name=".kotlin.DropCheckoutActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".compose.DropCheckoutActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".java.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

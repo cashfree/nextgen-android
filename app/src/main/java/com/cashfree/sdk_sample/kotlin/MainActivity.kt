@@ -21,10 +21,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun startUPIIntentCheckout(view: View?) {
-        startActivity(Intent(this@MainActivity, ElementCheckoutActivity::class.java))
+        startActivity(Intent(this@MainActivity, UPIIntentActivity::class.java))
     }
 
     fun startWebCheckout(view: View?) {
-        startActivity(Intent(this@MainActivity, ElementCheckoutActivity::class.java))
+        startActivity(Intent(this@MainActivity, WebCheckoutActivity::class.java))
     }
 }
