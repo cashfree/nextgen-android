@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.cashfree.pg.api.CFPaymentGatewayService;
 import com.cashfree.pg.core.api.CFCorePaymentGatewayService;
 import com.cashfree.pg.core.api.CFSession;
+import com.cashfree.pg.core.api.CFTheme;
 import com.cashfree.pg.core.api.callback.CFCheckoutResponseCallback;
 import com.cashfree.pg.core.api.card.CFCard;
 import com.cashfree.pg.core.api.card.CFCardPayment;
@@ -108,10 +109,19 @@ public class ElementCheckoutActivity extends AppCompatActivity implements CFChec
                     .setCardExpiryYear(cardYY)
                     .setCVV(cardCVV)
                     .build();
+            CFTheme theme = new CFTheme.CFThemeBuilder()
+                    .setNavigationBarBackgroundColor("#6A2222")
+                    .setNavigationBarTextColor("#FFFFFF")
+                    .setButtonBackgroundColor("#6Aaaaa")
+                    .setButtonTextColor("#FFFFFF")
+                    .setPrimaryTextColor("#11385b")
+                    .setSecondaryTextColor("#808080")
+                    .build();
             CFCardPayment cfCardPayment = new CFCardPayment.CFCardPaymentBuilder()
                     .setSession(cfSession)
                     .setCard(cfCard)
                     .build();
+            cfCardPayment.setTheme(theme);
             CFCorePaymentGatewayService.getInstance().doPayment(ElementCheckoutActivity.this, cfCardPayment);
         } catch (CFException exception) {
             exception.printStackTrace();
@@ -160,10 +170,19 @@ public class ElementCheckoutActivity extends AppCompatActivity implements CFChec
                         .setBankName(bankName)
                         .setEMITenure(emiTenure)
                         .build();
+                CFTheme theme = new CFTheme.CFThemeBuilder()
+                        .setNavigationBarBackgroundColor("#6A2222")
+                        .setNavigationBarTextColor("#FFFFFF")
+                        .setButtonBackgroundColor("#6Aaaaa")
+                        .setButtonTextColor("#FFFFFF")
+                        .setPrimaryTextColor("#11385b")
+                        .setSecondaryTextColor("#808080")
+                        .build();
                 CFEMICardPayment cfCardPayment = new CFEMICardPayment.CFEMICardPaymentBuilder()
                         .setSession(cfSession)
                         .setCard(cfCard)
                         .build();
+                cfCardPayment.setTheme(theme);
                 CFCorePaymentGatewayService.getInstance().doPayment(ElementCheckoutActivity.this, cfCardPayment);
             } catch (CFException exception) {
                 exception.printStackTrace();
@@ -182,10 +201,19 @@ public class ElementCheckoutActivity extends AppCompatActivity implements CFChec
                 CFNetBanking cfNetBanking = new CFNetBanking.CFNetBankingBuilder()
                         .setBankCode(bankCode)
                         .build();
+                CFTheme theme = new CFTheme.CFThemeBuilder()
+                        .setNavigationBarBackgroundColor("#6A2222")
+                        .setNavigationBarTextColor("#FFFFFF")
+                        .setButtonBackgroundColor("#6Aaaaa")
+                        .setButtonTextColor("#FFFFFF")
+                        .setPrimaryTextColor("#11385b")
+                        .setSecondaryTextColor("#808080")
+                        .build();
                 CFNetBankingPayment cfNetBankingPayment = new CFNetBankingPayment.CFNetBankingPaymentBuilder()
                         .setSession(cfSession)
                         .setCfNetBanking(cfNetBanking)
                         .build();
+                cfNetBankingPayment.setTheme(theme);
                 CFCorePaymentGatewayService.getInstance().doPayment(ElementCheckoutActivity.this, cfNetBankingPayment);
             } catch (CFException exception) {
                 exception.printStackTrace();
@@ -212,10 +240,19 @@ public class ElementCheckoutActivity extends AppCompatActivity implements CFChec
                         .setProvider(channel)
                         .setPhone(phone)
                         .build();
+                CFTheme theme = new CFTheme.CFThemeBuilder()
+                        .setNavigationBarBackgroundColor("#6A2222")
+                        .setNavigationBarTextColor("#FFFFFF")
+                        .setButtonBackgroundColor("#6Aaaaa")
+                        .setButtonTextColor("#FFFFFF")
+                        .setPrimaryTextColor("#11385b")
+                        .setSecondaryTextColor("#808080")
+                        .build();
                 CFWalletPayment cfWalletPayment = new CFWalletPayment.CFWalletPaymentBuilder()
                         .setSession(cfSession)
                         .setCfWallet(cfWallet)
                         .build();
+                cfWalletPayment.setTheme(theme);
                 CFCorePaymentGatewayService.getInstance().doPayment(ElementCheckoutActivity.this, cfWalletPayment);
             } catch (CFException exception) {
                 exception.printStackTrace();
@@ -234,10 +271,19 @@ public class ElementCheckoutActivity extends AppCompatActivity implements CFChec
                         .setProvider(payLaterChannel)
                         .setPhone(phone)
                         .build();
+                CFTheme theme = new CFTheme.CFThemeBuilder()
+                        .setNavigationBarBackgroundColor("#6A2222")
+                        .setNavigationBarTextColor("#FFFFFF")
+                        .setButtonBackgroundColor("#6Aaaaa")
+                        .setButtonTextColor("#FFFFFF")
+                        .setPrimaryTextColor("#11385b")
+                        .setSecondaryTextColor("#808080")
+                        .build();
                 CFPayLaterPayment cfPayLaterPayment = new CFPayLaterPayment.CFPayLaterPaymentBuilder()
                         .setSession(cfSession)
                         .setCfPayLater(cfPayLater)
                         .build();
+                cfPayLaterPayment.setTheme(theme);
                 CFCorePaymentGatewayService.getInstance().doPayment(ElementCheckoutActivity.this, cfPayLaterPayment);
             } catch (CFException exception) {
                 exception.printStackTrace();
@@ -277,10 +323,19 @@ public class ElementCheckoutActivity extends AppCompatActivity implements CFChec
                     .setMode(mode)
                     .setUPIID(id)
                     .build();
+            CFTheme theme = new CFTheme.CFThemeBuilder()
+                    .setNavigationBarBackgroundColor("#6A2222")
+                    .setNavigationBarTextColor("#FFFFFF")
+                    .setButtonBackgroundColor("#6Aaaaa")
+                    .setButtonTextColor("#FFFFFF")
+                    .setPrimaryTextColor("#11385b")
+                    .setSecondaryTextColor("#808080")
+                    .build();
             CFUPIPayment cfupiPayment = new CFUPIPayment.CFUPIPaymentBuilder()
                     .setSession(cfSession)
                     .setCfUPI(cfupi)
                     .build();
+            cfupiPayment.setTheme(theme);
             CFCorePaymentGatewayService.getInstance().doPayment(ElementCheckoutActivity.this, cfupiPayment);
         } catch (CFException exception) {
             exception.printStackTrace();

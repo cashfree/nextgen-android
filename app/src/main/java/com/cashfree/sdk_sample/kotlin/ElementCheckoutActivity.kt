@@ -1,35 +1,35 @@
 package com.cashfree.sdk_sample.kotlin
 
-import androidx.appcompat.app.AppCompatActivity
-import com.cashfree.pg.core.api.callback.CFCheckoutResponseCallback
-import com.cashfree.pg.core.api.CFSession
-import com.cashfree.pg.core.api.upi.CFUPI
 import android.os.Bundle
-import com.cashfree.sdk_sample.R
-import com.cashfree.pg.api.CFPaymentGatewayService
-import com.cashfree.pg.core.api.utils.CFErrorResponse
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.cashfree.pg.api.CFPaymentGatewayService
+import com.cashfree.pg.core.api.CFCorePaymentGatewayService
+import com.cashfree.pg.core.api.CFSession
 import com.cashfree.pg.core.api.CFSession.CFSessionBuilder
+import com.cashfree.pg.core.api.CFTheme.CFThemeBuilder
+import com.cashfree.pg.core.api.callback.CFCheckoutResponseCallback
 import com.cashfree.pg.core.api.card.CFCard.CFCardBuilder
 import com.cashfree.pg.core.api.card.CFCardPayment.CFCardPaymentBuilder
-import com.cashfree.pg.core.api.CFCorePaymentGatewayService
 import com.cashfree.pg.core.api.emicard.CFEMICard.CFEMICardBuilder
 import com.cashfree.pg.core.api.emicard.CFEMICardPayment.CFEMICardPaymentBuilder
 import com.cashfree.pg.core.api.exception.CFException
 import com.cashfree.pg.core.api.netbanking.CFNetBanking.CFNetBankingBuilder
 import com.cashfree.pg.core.api.netbanking.CFNetBankingPayment.CFNetBankingPaymentBuilder
-import kotlin.Throws
-import com.cashfree.pg.core.api.wallet.CFWallet.CFWalletBuilder
-import com.cashfree.pg.core.api.wallet.CFWalletPayment.CFWalletPaymentBuilder
 import com.cashfree.pg.core.api.paylater.CFPayLater.CFPayLaterBuilder
 import com.cashfree.pg.core.api.paylater.CFPayLaterPayment.CFPayLaterPaymentBuilder
+import com.cashfree.pg.core.api.upi.CFUPI
 import com.cashfree.pg.core.api.upi.CFUPI.CFUPIBuilder
 import com.cashfree.pg.core.api.upi.CFUPIPayment.CFUPIPaymentBuilder
+import com.cashfree.pg.core.api.utils.CFErrorResponse
+import com.cashfree.pg.core.api.wallet.CFWallet.CFWalletBuilder
+import com.cashfree.pg.core.api.wallet.CFWalletPayment
+import com.cashfree.pg.core.api.wallet.CFWalletPayment.CFWalletPaymentBuilder
 import com.cashfree.sdk_sample.Config
-import java.lang.IllegalArgumentException
+import com.cashfree.sdk_sample.R
 
 class ElementCheckoutActivity : AppCompatActivity(), CFCheckoutResponseCallback {
     // Go to https://docs.cashfree.com/docs/31-initiate-payment-native-checkout for the documentation
@@ -114,10 +114,19 @@ class ElementCheckoutActivity : AppCompatActivity(), CFCheckoutResponseCallback 
                 .setCardExpiryYear(cardYY)
                 .setCVV(cardCVV)
                 .build()
+            val theme = CFThemeBuilder()
+                .setNavigationBarBackgroundColor("#6A2222")
+                .setNavigationBarTextColor("#FFFFFF")
+                .setButtonBackgroundColor("#6Aaaaa")
+                .setButtonTextColor("#FFFFFF")
+                .setPrimaryTextColor("#11385b")
+                .setSecondaryTextColor("#808080")
+                .build()
             val cfCardPayment = CFCardPaymentBuilder()
                 .setSession(cfSession)
                 .setCard(cfCard)
                 .build()
+            cfCardPayment.theme = theme
             CFCorePaymentGatewayService.getInstance()
                 .doPayment(this@ElementCheckoutActivity, cfCardPayment)
         } catch (exception: CFException) {
@@ -165,10 +174,19 @@ class ElementCheckoutActivity : AppCompatActivity(), CFCheckoutResponseCallback 
                 .setBankName(bankName)
                 .setEMITenure(emiTenure)
                 .build()
+            val theme = CFThemeBuilder()
+                .setNavigationBarBackgroundColor("#6A2222")
+                .setNavigationBarTextColor("#FFFFFF")
+                .setButtonBackgroundColor("#6Aaaaa")
+                .setButtonTextColor("#FFFFFF")
+                .setPrimaryTextColor("#11385b")
+                .setSecondaryTextColor("#808080")
+                .build()
             val cfCardPayment = CFEMICardPaymentBuilder()
                 .setSession(cfSession)
                 .setCard(cfCard)
                 .build()
+            cfCardPayment.theme = theme
             CFCorePaymentGatewayService.getInstance()
                 .doPayment(this@ElementCheckoutActivity, cfCardPayment)
         } catch (exception: CFException) {
@@ -190,6 +208,15 @@ class ElementCheckoutActivity : AppCompatActivity(), CFCheckoutResponseCallback 
                 .setSession(cfSession)
                 .setCfNetBanking(cfNetBanking)
                 .build()
+            val theme = CFThemeBuilder()
+                .setNavigationBarBackgroundColor("#6A2222")
+                .setNavigationBarTextColor("#FFFFFF")
+                .setButtonBackgroundColor("#6Aaaaa")
+                .setButtonTextColor("#FFFFFF")
+                .setPrimaryTextColor("#11385b")
+                .setSecondaryTextColor("#808080")
+                .build()
+            cfNetBankingPayment.theme = theme
             CFCorePaymentGatewayService.getInstance()
                 .doPayment(this@ElementCheckoutActivity, cfNetBankingPayment)
         } catch (exception: CFException) {
@@ -221,6 +248,15 @@ class ElementCheckoutActivity : AppCompatActivity(), CFCheckoutResponseCallback 
                 .setSession(cfSession)
                 .setCfWallet(cfWallet)
                 .build()
+            val theme = CFThemeBuilder()
+                .setNavigationBarBackgroundColor("#6A2222")
+                .setNavigationBarTextColor("#FFFFFF")
+                .setButtonBackgroundColor("#6Aaaaa")
+                .setButtonTextColor("#FFFFFF")
+                .setPrimaryTextColor("#11385b")
+                .setSecondaryTextColor("#808080")
+                .build()
+            cfWalletPayment.theme = theme
             CFCorePaymentGatewayService.getInstance()
                 .doPayment(this@ElementCheckoutActivity, cfWalletPayment)
         } catch (exception: CFException) {
@@ -243,6 +279,15 @@ class ElementCheckoutActivity : AppCompatActivity(), CFCheckoutResponseCallback 
                 .setSession(cfSession)
                 .setCfPayLater(cfPayLater)
                 .build()
+            val theme = CFThemeBuilder()
+                .setNavigationBarBackgroundColor("#6A2222")
+                .setNavigationBarTextColor("#FFFFFF")
+                .setButtonBackgroundColor("#6Aaaaa")
+                .setButtonTextColor("#FFFFFF")
+                .setPrimaryTextColor("#11385b")
+                .setSecondaryTextColor("#808080")
+                .build()
+            cfPayLaterPayment.theme = theme
             CFCorePaymentGatewayService.getInstance()
                 .doPayment(this@ElementCheckoutActivity, cfPayLaterPayment)
         } catch (exception: CFException) {
@@ -286,6 +331,15 @@ class ElementCheckoutActivity : AppCompatActivity(), CFCheckoutResponseCallback 
                 .setSession(cfSession)
                 .setCfUPI(cfupi)
                 .build()
+            val theme = CFThemeBuilder()
+                .setNavigationBarBackgroundColor("#6A2222")
+                .setNavigationBarTextColor("#FFFFFF")
+                .setButtonBackgroundColor("#6Aaaaa")
+                .setButtonTextColor("#FFFFFF")
+                .setPrimaryTextColor("#11385b")
+                .setSecondaryTextColor("#808080")
+                .build()
+            cfupiPayment.theme = theme
             CFCorePaymentGatewayService.getInstance()
                 .doPayment(this@ElementCheckoutActivity, cfupiPayment)
         } catch (exception: CFException) {
