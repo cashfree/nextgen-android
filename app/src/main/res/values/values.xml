@@ -1,0 +1,3 @@
+<resources>
+    <bool name="cashfree_pg_core_encrypt_pref_enabled">false</bool>
+</resources>
