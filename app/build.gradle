@@ -7,7 +7,7 @@ android {
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.cashfree.sdk_sample"
+        applicationId "com.cashfree.pg.demoapp"
         minSdk 21
         targetSdk 33
         versionCode 1
@@ -64,7 +64,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
-    implementation 'com.cashfree.pg:api:2.1.14'
+    implementation 'com.cashfree.pg:api:2.1.15'
 
     androidTestImplementation platform('androidx.compose:compose-bom:2022.10.00')
     androidTestImplementation 'androidx.compose.ui:ui-test-junit4'
