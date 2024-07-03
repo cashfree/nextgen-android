@@ -122,6 +122,11 @@ public class ElementCheckoutActivity extends AppCompatActivity implements CFChec
                     .setCard(cfCard)
                     .build();
             cfCardPayment.setTheme(theme);
+            /**
+             * To set Loader UI before  order pay network call
+             */
+            cfCardPayment.setLoaderEnable(true);
+
             CFCorePaymentGatewayService.getInstance().doPayment(ElementCheckoutActivity.this, cfCardPayment);
         } catch (CFException exception) {
             exception.printStackTrace();
@@ -183,6 +188,10 @@ public class ElementCheckoutActivity extends AppCompatActivity implements CFChec
                         .setCard(cfCard)
                         .build();
                 cfCardPayment.setTheme(theme);
+                /**
+                 * To set Loader UI before  order pay network call
+                 */
+                cfCardPayment.setLoaderEnable(true);
                 CFCorePaymentGatewayService.getInstance().doPayment(ElementCheckoutActivity.this, cfCardPayment);
             } catch (CFException exception) {
                 exception.printStackTrace();
@@ -214,6 +223,10 @@ public class ElementCheckoutActivity extends AppCompatActivity implements CFChec
                         .setCfNetBanking(cfNetBanking)
                         .build();
                 cfNetBankingPayment.setTheme(theme);
+                /**
+                 * To set Loader UI before  order pay network call
+                 */
+                cfNetBankingPayment.setLoaderEnable(true);
                 CFCorePaymentGatewayService.getInstance().doPayment(ElementCheckoutActivity.this, cfNetBankingPayment);
             } catch (CFException exception) {
                 exception.printStackTrace();
@@ -253,6 +266,10 @@ public class ElementCheckoutActivity extends AppCompatActivity implements CFChec
                         .setCfWallet(cfWallet)
                         .build();
                 cfWalletPayment.setTheme(theme);
+                /**
+                 * To set Loader UI before  order pay network call
+                 */
+                cfWalletPayment.setLoaderEnable(true);
                 CFCorePaymentGatewayService.getInstance().doPayment(ElementCheckoutActivity.this, cfWalletPayment);
             } catch (CFException exception) {
                 exception.printStackTrace();
@@ -284,6 +301,10 @@ public class ElementCheckoutActivity extends AppCompatActivity implements CFChec
                         .setCfPayLater(cfPayLater)
                         .build();
                 cfPayLaterPayment.setTheme(theme);
+                /**
+                 * To set Loader UI before  order pay network call
+                 */
+                cfPayLaterPayment.setLoaderEnable(true);
                 CFCorePaymentGatewayService.getInstance().doPayment(ElementCheckoutActivity.this, cfPayLaterPayment);
             } catch (CFException exception) {
                 exception.printStackTrace();
@@ -336,6 +357,10 @@ public class ElementCheckoutActivity extends AppCompatActivity implements CFChec
                     .setCfUPI(cfupi)
                     .build();
             cfupiPayment.setTheme(theme);
+            /**
+             * To set Loader UI before  order pay network call
+             */
+            cfupiPayment.setLoaderEnable(true);
             CFCorePaymentGatewayService.getInstance().doPayment(ElementCheckoutActivity.this, cfupiPayment);
         } catch (CFException exception) {
             exception.printStackTrace();
