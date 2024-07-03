@@ -5,8 +5,8 @@ import com.cashfree.pg.core.api.upi.CFUPI
 
 data class Config(
     // CFSession Inputs
-    val orderID: String = "order_4303292iSWwBghN1nOebKgo4P87Mg0dAI",
-    val paymentSessionID: String = "session_2APItsq13elTiiiC9zmxp-jPA_Q9x4LkZaQxI-Zn9hLNrj6VOnEkIZcgRMLD-X8yqOQradKcNYADtLW2FAbsGCPw54b_5v1O_odBF-Ex0o9M",
+    val orderID: String = "order_101024392ijDpmT2x2gzR0QsELvD3gFp6X5",
+    val paymentSessionID: String = "session_XN0VD4UyE9L2iJjQ4zZG-_4aXhFYDx3S3TGwpbLK3ZcRCJEClRr1YmFmicrkl-EyGOF4Z9ybtJaa29n8zTXtcdATPlvTdpXgx9I8RbGTxuC6",
     val environment: CFSession.Environment = CFSession.Environment.SANDBOX,
 
     //Card Payment Inputs
@@ -22,11 +22,11 @@ data class Config(
 
     //UPI Collect mode
     val collectMode: CFUPI.Mode = CFUPI.Mode.COLLECT,
-    val upiVpa: String = "testsuccess@gocash",
+    val upiVpa: String = "testfailure@gocash",
 
     // UPI Intent mode
     val intentMode: CFUPI.Mode = CFUPI.Mode.INTENT,
-    val upiAppPackage: String = "com.google.android.apps.nbu.paisa.user",
+    val upiAppPackage: String = "com.cashfree.cashfreetestupi",
 
     //Wallet mode
     val channel: String = "phonepe",

@@ -123,7 +123,8 @@ public class ElementCheckoutActivity extends AppCompatActivity implements CFChec
                     .build();
             cfCardPayment.setTheme(theme);
             /**
-             * To set Loader UI before  order pay network call
+             * To set Loader UI before  order pay network call.
+             * This is optional for merchants. If they specially want to show UI loader then only enable it.
              */
             cfCardPayment.setLoaderEnable(true);
 
@@ -189,7 +190,8 @@ public class ElementCheckoutActivity extends AppCompatActivity implements CFChec
                         .build();
                 cfCardPayment.setTheme(theme);
                 /**
-                 * To set Loader UI before  order pay network call
+                 * To set Loader UI before  order pay network call.
+                 * This is optional for merchants. If they specially want to show UI loader then only enable it.
                  */
                 cfCardPayment.setLoaderEnable(true);
                 CFCorePaymentGatewayService.getInstance().doPayment(ElementCheckoutActivity.this, cfCardPayment);
@@ -224,7 +226,8 @@ public class ElementCheckoutActivity extends AppCompatActivity implements CFChec
                         .build();
                 cfNetBankingPayment.setTheme(theme);
                 /**
-                 * To set Loader UI before  order pay network call
+                 * To set Loader UI before  order pay network call.
+                 * This is optional for merchants. If they specially want to show UI loader then only enable it.
                  */
                 cfNetBankingPayment.setLoaderEnable(true);
                 CFCorePaymentGatewayService.getInstance().doPayment(ElementCheckoutActivity.this, cfNetBankingPayment);
@@ -267,7 +270,8 @@ public class ElementCheckoutActivity extends AppCompatActivity implements CFChec
                         .build();
                 cfWalletPayment.setTheme(theme);
                 /**
-                 * To set Loader UI before  order pay network call
+                 * To set Loader UI before  order pay network call.
+                 * This is optional for merchants. If they specially want to show UI loader then only enable it.
                  */
                 cfWalletPayment.setLoaderEnable(true);
                 CFCorePaymentGatewayService.getInstance().doPayment(ElementCheckoutActivity.this, cfWalletPayment);
@@ -302,7 +306,8 @@ public class ElementCheckoutActivity extends AppCompatActivity implements CFChec
                         .build();
                 cfPayLaterPayment.setTheme(theme);
                 /**
-                 * To set Loader UI before  order pay network call
+                 * To set Loader UI before  order pay network call.
+                 * This is optional for merchants. If they specially want to show UI loader then only enable it.
                  */
                 cfPayLaterPayment.setLoaderEnable(true);
                 CFCorePaymentGatewayService.getInstance().doPayment(ElementCheckoutActivity.this, cfPayLaterPayment);
@@ -358,7 +363,8 @@ public class ElementCheckoutActivity extends AppCompatActivity implements CFChec
                     .build();
             cfupiPayment.setTheme(theme);
             /**
-             * To set Loader UI before  order pay network call
+             * To set Loader UI before  order pay network call.
+             * This is optional for merchants. If they specially want to show UI loader then only enable it.
              */
             cfupiPayment.setLoaderEnable(true);
             CFCorePaymentGatewayService.getInstance().doPayment(ElementCheckoutActivity.this, cfupiPayment);
