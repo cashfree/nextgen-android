@@ -22,6 +22,8 @@ import com.cashfree.pg.core.api.netbanking.CFNetBanking;
 import com.cashfree.pg.core.api.netbanking.CFNetBankingPayment;
 import com.cashfree.pg.core.api.paylater.CFPayLater;
 import com.cashfree.pg.core.api.paylater.CFPayLaterPayment;
+import com.cashfree.pg.core.api.ui.CFCardNumberView;
+import com.cashfree.pg.core.api.ui.ICardInfo;
 import com.cashfree.pg.core.api.upi.CFUPI;
 import com.cashfree.pg.core.api.upi.CFUPIPayment;
 import com.cashfree.pg.core.api.utils.CFErrorResponse;
@@ -29,6 +31,8 @@ import com.cashfree.pg.core.api.wallet.CFWallet;
 import com.cashfree.pg.core.api.wallet.CFWalletPayment;
 import com.cashfree.sdk_sample.Config;
 import com.cashfree.sdk_sample.R;
+
+import org.json.JSONObject;
 
 public class ElementCheckoutActivity extends AppCompatActivity implements CFCheckoutResponseCallback {
     // Go to https://docs.cashfree.com/docs/31-initiate-payment-native-checkout for the documentation
@@ -66,12 +70,35 @@ public class ElementCheckoutActivity extends AppCompatActivity implements CFChec
     // Net Banking mode
     private final int bankCode = config.getBankCode();
 
+    private CFCardNumberView cfElementCard;
+    private CFSession cfSession;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_element_checkout);
+        cfElementCard = findViewById(R.id.cf_element_card);
         try {
             CFPaymentGatewayService.getInstance().setCheckoutCallback(this);
+        } catch (CFException e) {
+            e.printStackTrace();
+        }
+        try {
+            cfSession = new CFSession.CFSessionBuilder()
+                    .setEnvironment(cfEnvironment)
+                    .setPaymentSessionID(paymentSessionID)
+                    .setOrderId(orderID)
+                    .build();
+        } catch (CFException e) {
+            e.printStackTrace();
+        }
+        try {
+            cfElementCard.initialize(cfSession, new ICardInfo() {
+                @Override
+                public void onInfo(JSONObject jsonObject) {
+                    Log.d("CFCARDVIEW", jsonObject.toString());
+                }
+            });
         } catch (CFException e) {
             e.printStackTrace();
         }
@@ -129,6 +156,39 @@ public class ElementCheckoutActivity extends AppCompatActivity implements CFChec
             cfCardPayment.setLoaderEnable(true);
 
             CFCorePaymentGatewayService.getInstance().doPayment(ElementCheckoutActivity.this, cfCardPayment);
+        } catch (CFException exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    public void onElementPayClick(View view) {
+        try {
+            CFCard cfCard = new CFCard.CFCardBuilder()
+                    .setCardHolderName(cardHolderName)
+                    .setCardExpiryMonth(cardMM)
+                    .setCardExpiryYear(cardYY)
+                    .setCVV(cardCVV)
+                    .setCfCard(true)
+                    .build();
+            CFTheme theme = new CFTheme.CFThemeBuilder()
+                    .setNavigationBarBackgroundColor("#6A2222")
+                    .setNavigationBarTextColor("#FFFFFF")
+                    .setButtonBackgroundColor("#6Aaaaa")
+                    .setButtonTextColor("#FFFFFF")
+                    .setPrimaryTextColor("#11385b")
+                    .setSecondaryTextColor("#808080")
+                    .build();
+            CFCardPayment cfCardPayment = new CFCardPayment.CFCardPaymentBuilder()
+                    .setSession(cfSession)
+                    .setCard(cfCard)
+                    .build();
+            cfCardPayment.setTheme(theme);
+            /**
+             * To set Loader UI before  order pay network call.
+             * This is optional for merchants. If they specially want to show UI loader then only enable it.
+             */
+            cfCardPayment.setLoaderEnable(true);
+            cfElementCard.doPayment(ElementCheckoutActivity.this, cfCardPayment);
         } catch (CFException exception) {
             exception.printStackTrace();
         }
