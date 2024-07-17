@@ -4,6 +4,7 @@
     <string name="upi_collect">UPI Collect</string>
     <string name="upi_intent">UPI Intent</string>
     <string name="card">CARD</string>
+    <string name="element_card">Element CARD</string>
     <string name="card_emi">CARD EMI</string>
     <string name="netbanking">Net Banking</string>
     <string name="wallet">Wallets</string>
