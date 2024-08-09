@@ -12,6 +12,7 @@ import com.cashfree.pg.api.CFPaymentGatewayService;
 import com.cashfree.pg.core.api.CFCorePaymentGatewayService;
 import com.cashfree.pg.core.api.CFSession;
 import com.cashfree.pg.core.api.CFTheme;
+import com.cashfree.pg.core.api.base.CFPayment;
 import com.cashfree.pg.core.api.callback.CFCheckoutResponseCallback;
 import com.cashfree.pg.core.api.card.CFCard;
 import com.cashfree.pg.core.api.card.CFCardPayment;
@@ -136,6 +137,8 @@ public class ElementCheckoutActivity extends AppCompatActivity implements CFChec
                     .setCardExpiryYear(cardYY)
                     .setCVV(cardCVV)
                     .build();
+
+            //To Set your theme on Cashfree UI
             CFTheme theme = new CFTheme.CFThemeBuilder()
                     .setNavigationBarBackgroundColor("#6A2222")
                     .setNavigationBarTextColor("#FFFFFF")
@@ -150,10 +153,10 @@ public class ElementCheckoutActivity extends AppCompatActivity implements CFChec
                     .build();
             cfCardPayment.setTheme(theme);
             /**
-             * To set Loader UI before  order pay network call.
+             * To set Full Screen Loader UI before  order pay network call.
              * This is optional for merchants. If they specially want to show UI loader then only enable it.
              */
-            cfCardPayment.setLoaderEnable(true);
+            cfCardPayment.setCfSDKFlow(CFPayment.CFSDKFlow.WITH_CASHFREE_FULLSCREEN_LOADER);
 
             CFCorePaymentGatewayService.getInstance().doPayment(ElementCheckoutActivity.this, cfCardPayment);
         } catch (CFException exception) {
@@ -272,6 +275,7 @@ public class ElementCheckoutActivity extends AppCompatActivity implements CFChec
                 CFNetBanking cfNetBanking = new CFNetBanking.CFNetBankingBuilder()
                         .setBankCode(bankCode)
                         .build();
+                //To Set your theme on Cashfree UI
                 CFTheme theme = new CFTheme.CFThemeBuilder()
                         .setNavigationBarBackgroundColor("#6A2222")
                         .setNavigationBarTextColor("#FFFFFF")
@@ -285,11 +289,13 @@ public class ElementCheckoutActivity extends AppCompatActivity implements CFChec
                         .setCfNetBanking(cfNetBanking)
                         .build();
                 cfNetBankingPayment.setTheme(theme);
+
                 /**
                  * To set Loader UI before  order pay network call.
                  * This is optional for merchants. If they specially want to show UI loader then only enable it.
                  */
-                cfNetBankingPayment.setLoaderEnable(true);
+                cfNetBankingPayment.setCfSDKFlow(CFPayment.CFSDKFlow.WITH_CASHFREE_FULLSCREEN_LOADER);
+
                 CFCorePaymentGatewayService.getInstance().doPayment(ElementCheckoutActivity.this, cfNetBankingPayment);
             } catch (CFException exception) {
                 exception.printStackTrace();
@@ -316,6 +322,8 @@ public class ElementCheckoutActivity extends AppCompatActivity implements CFChec
                         .setProvider(channel)
                         .setPhone(phone)
                         .build();
+
+                //To Set your theme on Cashfree UI
                 CFTheme theme = new CFTheme.CFThemeBuilder()
                         .setNavigationBarBackgroundColor("#6A2222")
                         .setNavigationBarTextColor("#FFFFFF")
@@ -333,7 +341,7 @@ public class ElementCheckoutActivity extends AppCompatActivity implements CFChec
                  * To set Loader UI before  order pay network call.
                  * This is optional for merchants. If they specially want to show UI loader then only enable it.
                  */
-                cfWalletPayment.setLoaderEnable(true);
+                cfWalletPayment.setCfSDKFlow(CFPayment.CFSDKFlow.WITH_CASHFREE_FULLSCREEN_LOADER);
                 CFCorePaymentGatewayService.getInstance().doPayment(ElementCheckoutActivity.this, cfWalletPayment);
             } catch (CFException exception) {
                 exception.printStackTrace();

@@ -5,8 +5,8 @@ import com.cashfree.pg.core.api.upi.CFUPI
 
 data class Config(
     // CFSession Inputs
-    val orderID: String = "order_101024392jMkFaGS2z5AJMx9vxWb7reG7Wz",
-    val paymentSessionID: String = "session_R16H4Krd12PXpy767jf0BjydfGYF8SqPZEzkK7kUPPCHFCkqlNm2ucYMIAZANBkMrQpJVNq0fODJBT3TcPnKc44iYsrVbLvarjym8-M4dpXn",
+    val orderID: String = "devstudio_95987450",
+    val paymentSessionID: String = "session_Diki726QGmNZ3GRLMjM0G5HdSQ3CoaQFsU6qLVY4NRrOr98KtY0MWbMRo0kD_jkDHilmYpXX2Iurk1bHlgUXKiyPOeKXKTc_yJsWb4qm4pXY",
     val environment: CFSession.Environment = CFSession.Environment.SANDBOX,
 
     //Card Payment Inputs
@@ -36,5 +36,5 @@ data class Config(
     val payLaterChannel: String = "lazypay",
 
     // Net Banking mode
-    val bankCode: Int = 3003
+    val bankCode: Int = 3006
 ) 
