@@ -136,6 +136,7 @@ public class ElementCheckoutActivity extends AppCompatActivity implements CFChec
                     .setCardExpiryMonth(cardMM)
                     .setCardExpiryYear(cardYY)
                     .setCVV(cardCVV)
+                    .setChannel("post")   //This will be required for merchant if they want native opt flow
                     .build();
 
             //To Set your theme on Cashfree UI
@@ -152,9 +153,11 @@ public class ElementCheckoutActivity extends AppCompatActivity implements CFChec
                     .setCard(cfCard)
                     .build();
             cfCardPayment.setTheme(theme);
+
             /**
              * To set Full Screen Loader UI before  order pay network call.
              * This is optional for merchants. If they specially want to show UI loader then only enable it.
+             * Note : If Merchant wants to use Native OTP flow in card payment then this is required.
              */
             cfCardPayment.setCfSDKFlow(CFPayment.CFSDKFlow.WITH_CASHFREE_FULLSCREEN_LOADER);
 
