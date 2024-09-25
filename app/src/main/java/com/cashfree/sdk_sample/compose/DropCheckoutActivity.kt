@@ -88,10 +88,7 @@ class DropCheckoutActivity : ComponentActivity(), CFCheckoutResponseCallback {
                 .setPaymentSessionID(paymentSessionID)
                 .setOrderId(orderID)
                 .build()
-//            val cfPaymentComponent = CFPaymentComponentBuilder()
-//                .add(CFPaymentComponent.CFPaymentModes.CARD)
-//                .add(CFPaymentComponent.CFPaymentModes.UPI)
-//                .build()
+
             val cfTheme = CFThemeBuilder()
                 .setNavigationBarBackgroundColor("#006EE1")
                 .setNavigationBarTextColor("#ffffff")
