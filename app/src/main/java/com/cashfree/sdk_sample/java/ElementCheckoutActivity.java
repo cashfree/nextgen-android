@@ -175,6 +175,7 @@ public class ElementCheckoutActivity extends AppCompatActivity implements CFChec
                     .setCardExpiryYear(cardYY)
                     .setCVV(cardCVV)
                     .setCfCard(true)
+                    .setChannel("post")
                     .build();
             CFTheme theme = new CFTheme.CFThemeBuilder()
                     .setNavigationBarBackgroundColor("#6A2222")
@@ -193,7 +194,7 @@ public class ElementCheckoutActivity extends AppCompatActivity implements CFChec
              * To set Loader UI before  order pay network call.
              * This is optional for merchants. If they specially want to show UI loader then only enable it.
              */
-            cfCardPayment.setLoaderEnable(true);
+            cfCardPayment.setCfSDKFlow(CFPayment.CFSDKFlow.WITH_CASHFREE_FULLSCREEN_LOADER);
             cfElementCard.doPayment(ElementCheckoutActivity.this, cfCardPayment);
         } catch (CFException exception) {
             exception.printStackTrace();

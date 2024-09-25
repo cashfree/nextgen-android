@@ -11,6 +11,7 @@ import com.cashfree.pg.core.api.CFCorePaymentGatewayService
 import com.cashfree.pg.core.api.CFSession
 import com.cashfree.pg.core.api.CFSession.CFSessionBuilder
 import com.cashfree.pg.core.api.CFTheme.CFThemeBuilder
+import com.cashfree.pg.core.api.base.CFPayment
 import com.cashfree.pg.core.api.callback.CFCheckoutResponseCallback
 import com.cashfree.pg.core.api.card.CFCard.CFCardBuilder
 import com.cashfree.pg.core.api.card.CFCardPayment.CFCardPaymentBuilder
@@ -113,6 +114,7 @@ class ElementCheckoutActivity : AppCompatActivity(), CFCheckoutResponseCallback 
                 .setCardExpiryMonth(cardMM)
                 .setCardExpiryYear(cardYY)
                 .setCVV(cardCVV)
+                .setChannel("post")
                 .build()
             val theme = CFThemeBuilder()
                 .setNavigationBarBackgroundColor("#6A2222")
@@ -127,8 +129,14 @@ class ElementCheckoutActivity : AppCompatActivity(), CFCheckoutResponseCallback 
                 .setCard(cfCard)
                 .build()
             cfCardPayment.theme = theme
-            CFCorePaymentGatewayService.getInstance()
-                .doPayment(this@ElementCheckoutActivity, cfCardPayment)
+            /**
+             * To set Full Screen Loader UI before  order pay network call.
+             * This is optional for merchants. If they specially want to show UI loader then only enable it.
+             * Note : If Merchant wants to use Native OTP flow in card payment then this is required.
+             */
+
+            cfCardPayment.cfSDKFlow = CFPayment.CFSDKFlow.WITH_CASHFREE_FULLSCREEN_LOADER
+            CFCorePaymentGatewayService.getInstance().doPayment(this@ElementCheckoutActivity, cfCardPayment)
         } catch (exception: CFException) {
             exception.printStackTrace()
         }
@@ -216,6 +224,11 @@ class ElementCheckoutActivity : AppCompatActivity(), CFCheckoutResponseCallback 
                 .setPrimaryTextColor("#11385b")
                 .setSecondaryTextColor("#808080")
                 .build()
+            /**
+             * To set Loader UI before  order pay network call.
+             * This is optional for merchants. If they specially want to show UI loader then only enable it.
+             */
+            cfNetBankingPayment.cfSDKFlow = CFPayment.CFSDKFlow.WITH_CASHFREE_FULLSCREEN_LOADER
             cfNetBankingPayment.theme = theme
             CFCorePaymentGatewayService.getInstance()
                 .doPayment(this@ElementCheckoutActivity, cfNetBankingPayment)
@@ -257,6 +270,11 @@ class ElementCheckoutActivity : AppCompatActivity(), CFCheckoutResponseCallback 
                 .setSecondaryTextColor("#808080")
                 .build()
             cfWalletPayment.theme = theme
+            /**
+             * To set Loader UI before  order pay network call.
+             * This is optional for merchants. If they specially want to show UI loader then only enable it.
+             */
+            cfWalletPayment.cfSDKFlow = CFPayment.CFSDKFlow.WITH_CASHFREE_FULLSCREEN_LOADER
             CFCorePaymentGatewayService.getInstance()
                 .doPayment(this@ElementCheckoutActivity, cfWalletPayment)
         } catch (exception: CFException) {
@@ -288,6 +306,11 @@ class ElementCheckoutActivity : AppCompatActivity(), CFCheckoutResponseCallback 
                 .setSecondaryTextColor("#808080")
                 .build()
             cfPayLaterPayment.theme = theme
+            /**
+             * To set Loader UI before  order pay network call.
+             * This is optional for merchants. If they specially want to show UI loader then only enable it.
+             */
+            cfPayLaterPayment.cfSDKFlow = CFPayment.CFSDKFlow.WITH_CASHFREE_FULLSCREEN_LOADER
             CFCorePaymentGatewayService.getInstance()
                 .doPayment(this@ElementCheckoutActivity, cfPayLaterPayment)
         } catch (exception: CFException) {
