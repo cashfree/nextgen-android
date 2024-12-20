@@ -28,12 +28,16 @@ import com.cashfree.pg.core.api.ui.ICardInfo;
 import com.cashfree.pg.core.api.upi.CFUPI;
 import com.cashfree.pg.core.api.upi.CFUPIPayment;
 import com.cashfree.pg.core.api.utils.CFErrorResponse;
+import com.cashfree.pg.core.api.utils.CFUPIApp;
+import com.cashfree.pg.core.api.utils.CFUPIUtil;
 import com.cashfree.pg.core.api.wallet.CFWallet;
 import com.cashfree.pg.core.api.wallet.CFWalletPayment;
 import com.cashfree.sdk_sample.Config;
 import com.cashfree.sdk_sample.R;
 
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 public class ElementCheckoutActivity extends AppCompatActivity implements CFCheckoutResponseCallback {
     // Go to https://docs.cashfree.com/docs/31-initiate-payment-native-checkout for the documentation
@@ -406,8 +410,22 @@ public class ElementCheckoutActivity extends AppCompatActivity implements CFChec
         initiatePayment(collectMode, upiVpa);
     }
 
+    /**
+     * This will fetch list of UPI app installed from phone and open PSP app.
+     * Callback will be invoked on background thread. So UI stuffs should on Main thread.
+     *
+     * @param view
+     */
     public void doUPIIntentPayment(View view) {
-        initiatePayment(intentMode, upiAppPackage);
+        CFUPIUtil.getInstalledUPIApps(this, upiAppList -> {
+            if (upiAppList != null && !upiAppList.isEmpty()) {
+                CFUPIApp upiApp = upiAppList.get(0);
+                runOnUiThread(() -> Toast.makeText(this, "UPI App==>" + upiApp.getDisplayName() + "===" + upiApp.getAppId(), Toast.LENGTH_SHORT).show());
+                String packageName = upiApp.getAppId();
+                initiatePayment(intentMode, packageName);
+            }
+        });
+
     }
 
     private void initiatePayment(CFUPI.Mode mode, String id) {
