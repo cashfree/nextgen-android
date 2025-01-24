@@ -47,5 +47,12 @@
         android:layout_height="wrap_content"
         android:onClick="startWebCheckout"
         android:text="Web Checkout"/>
+
+        <Button
+            android:id="@+id/subscriptionCheckoutBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="startSubscriptionCheckout"
+            android:text="Subscription Checkout"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
