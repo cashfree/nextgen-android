@@ -31,4 +31,9 @@ public class MainActivity extends AppCompatActivity {
     public void startWebCheckout(View view) {
         startActivity(new Intent(MainActivity.this, WebCheckoutActivity.class));
     }
+
+    public void startSubscriptionCheckout(View view) {
+        startActivity(new Intent(MainActivity.this, SubscriptionCheckoutActivity.class));
+    }
+
 }
