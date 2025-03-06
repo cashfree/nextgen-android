@@ -61,5 +61,5 @@ dependencies {
     implementation 'androidx.compose.material3:material3'
     testImplementation 'junit:junit:4.13.2'
 
-    implementation 'com.cashfree.pg:api:2.1.26'
+    implementation 'com.cashfree.pg:api:2.1.27'
 }

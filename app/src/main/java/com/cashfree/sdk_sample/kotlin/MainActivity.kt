@@ -1,10 +1,10 @@
 package com.cashfree.sdk_sample.kotlin
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import com.cashfree.sdk_sample.R
 import android.content.Intent
+import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import com.cashfree.sdk_sample.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,5 +26,9 @@ class MainActivity : AppCompatActivity() {
 
     fun startWebCheckout(view: View?) {
         startActivity(Intent(this@MainActivity, WebCheckoutActivity::class.java))
+    }
+
+    fun startSubscriptionCheckout(view: View?) {
+        startActivity(Intent(this@MainActivity, SubscriptionCheckoutActivity::class.java))
     }
 }

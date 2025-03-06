@@ -53,6 +53,10 @@
             android:exported="false" />
 
         <activity
+            android:name=".kotlin.SubscriptionCheckoutActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".compose.DropCheckoutActivity"
             android:exported="false" />
 
