@@ -24,7 +24,6 @@ import com.cashfree.pg.core.api.netbanking.CFNetBankingPayment;
 import com.cashfree.pg.core.api.paylater.CFPayLater;
 import com.cashfree.pg.core.api.paylater.CFPayLaterPayment;
 import com.cashfree.pg.core.api.ui.CFCardNumberView;
-import com.cashfree.pg.core.api.ui.ICardInfo;
 import com.cashfree.pg.core.api.upi.CFUPI;
 import com.cashfree.pg.core.api.upi.CFUPIPayment;
 import com.cashfree.pg.core.api.utils.CFErrorResponse;
@@ -35,12 +34,7 @@ import com.cashfree.pg.core.api.wallet.CFWalletPayment;
 import com.cashfree.sdk_sample.Config;
 import com.cashfree.sdk_sample.R;
 
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-
 public class ElementCheckoutActivity extends AppCompatActivity implements CFCheckoutResponseCallback {
-    // Go to https://docs.cashfree.com/docs/31-initiate-payment-native-checkout for the documentation
     Config config = new Config();
     String orderID = config.getOrderID();
     String paymentSessionID = config.getPaymentSessionID();
@@ -98,12 +92,7 @@ public class ElementCheckoutActivity extends AppCompatActivity implements CFChec
             e.printStackTrace();
         }
         try {
-            cfElementCard.initialize(cfSession, new ICardInfo() {
-                @Override
-                public void onInfo(JSONObject jsonObject) {
-                    Log.d("CFCARDVIEW", jsonObject.toString());
-                }
-            });
+            cfElementCard.initialize(cfSession, jsonObject -> Log.d("CFCARDVIEW", jsonObject.toString()));
         } catch (CFException e) {
             e.printStackTrace();
         }
@@ -121,11 +110,11 @@ public class ElementCheckoutActivity extends AppCompatActivity implements CFChec
 
     public void doCardPayment(View view) {
         if (orderID.equals("ORDER_ID") || TextUtils.isEmpty(orderID)) {
-            Toast.makeText(this, "Please set the orderId (DropCheckoutActivity.class,  line: 32)", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please set the orderId", Toast.LENGTH_SHORT).show();
             return;
         }
         if (paymentSessionID.equals("TOKEN") || TextUtils.isEmpty(paymentSessionID)) {
-            Toast.makeText(this, "Please set the paymentSessionID (DropCheckoutActivity.class,  line: 33)", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please set the paymentSessionID ", Toast.LENGTH_SHORT).show();
             return;
         }
         try {

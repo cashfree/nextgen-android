@@ -70,8 +70,7 @@ public class SubscriptionCheckoutActivity extends AppCompatActivity implements C
                             .setNavigationBarBackgroundColor("#d11b1b")
                             .build())
                     .build();
-            CFPaymentGatewayService gatewayService = CFPaymentGatewayService.getInstance();
-            gatewayService.doSubscriptionPayment(SubscriptionCheckoutActivity.this, cfSubscriptionPayment);
+            CFPaymentGatewayService.getInstance().doSubscriptionPayment(SubscriptionCheckoutActivity.this, cfSubscriptionPayment);
         } catch (CFException exception) {
             exception.printStackTrace();
         }

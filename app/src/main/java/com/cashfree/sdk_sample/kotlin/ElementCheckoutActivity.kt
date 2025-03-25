@@ -27,13 +27,11 @@ import com.cashfree.pg.core.api.upi.CFUPI.CFUPIBuilder
 import com.cashfree.pg.core.api.upi.CFUPIPayment.CFUPIPaymentBuilder
 import com.cashfree.pg.core.api.utils.CFErrorResponse
 import com.cashfree.pg.core.api.wallet.CFWallet.CFWalletBuilder
-import com.cashfree.pg.core.api.wallet.CFWalletPayment
 import com.cashfree.pg.core.api.wallet.CFWalletPayment.CFWalletPaymentBuilder
 import com.cashfree.sdk_sample.Config
 import com.cashfree.sdk_sample.R
 
 class ElementCheckoutActivity : AppCompatActivity(), CFCheckoutResponseCallback {
-    // Go to https://docs.cashfree.com/docs/31-initiate-payment-native-checkout for the documentation
     private val config = Config()
     private val orderID = config.orderID
     private val paymentSessionID = config.paymentSessionID

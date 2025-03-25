@@ -94,8 +94,8 @@ class DropCheckoutActivity : AppCompatActivity(), CFCheckoutResponseCallback {
                 //                        .setCFUIPaymentModes(cfPaymentComponent)
                 .setCFNativeCheckoutUITheme(cfTheme)
                 .build()
-            val gatewayService = CFPaymentGatewayService.getInstance()
-            gatewayService.doPayment(this@DropCheckoutActivity, cfDropCheckoutPayment)
+            CFPaymentGatewayService.getInstance()
+                .doPayment(this@DropCheckoutActivity, cfDropCheckoutPayment)
         } catch (exception: CFException) {
             exception.printStackTrace()
         }

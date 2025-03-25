@@ -2,35 +2,32 @@ package com.cashfree.sdk_sample.kotlin
 
 import androidx.appcompat.app.AppCompatActivity
 import com.cashfree.pg.core.api.callback.CFCheckoutResponseCallback
-import com.cashfree.pg.core.api.CFSession
 import android.os.Bundle
 import com.cashfree.sdk_sample.R
 import com.cashfree.pg.api.CFPaymentGatewayService
 import android.content.Intent
-import android.app.Activity
 import com.cashfree.pg.core.api.utils.CFErrorResponse
 import android.text.TextUtils
 import android.util.Log
 import android.widget.Toast
 import com.cashfree.pg.core.api.CFSession.CFSessionBuilder
 import com.cashfree.pg.core.api.exception.CFException
-import com.cashfree.pg.ui.api.upi.intent.CFIntentTheme
 import com.cashfree.pg.ui.api.upi.intent.CFIntentTheme.CFIntentThemeBuilder
-import com.cashfree.pg.ui.api.upi.intent.CFUPIIntentCheckout
 import com.cashfree.pg.ui.api.upi.intent.CFUPIIntentCheckout.CFUPIIntentBuilder
-import com.cashfree.pg.ui.api.upi.intent.CFUPIIntentCheckoutPayment
 import com.cashfree.pg.ui.api.upi.intent.CFUPIIntentCheckoutPayment.CFUPIIntentPaymentBuilder
+import com.cashfree.sdk_sample.Config
 
 class UPIIntentActivity : AppCompatActivity(), CFCheckoutResponseCallback {
-    var orderID = "ORDER_ID"
-    var token = "TOKEN"
-    var cfEnvironment = CFSession.Environment.PRODUCTION
+    val config = Config()
+    var orderID = config.orderID
+    var paymentSessionID = config.paymentSessionID
+    var cfEnvironment = config.environment
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_drop_checkout)
         try {
             CFPaymentGatewayService.getInstance().setCheckoutCallback(this)
-            doDropCheckoutPayment()
+            doUPIIntentCheckoutPayment()
         } catch (e: CFException) {
             e.printStackTrace()
         }
@@ -54,20 +51,20 @@ class UPIIntentActivity : AppCompatActivity(), CFCheckoutResponseCallback {
         finish()
     }
 
-    fun doDropCheckoutPayment() {
+    fun doUPIIntentCheckoutPayment() {
         if (orderID == "ORDER_ID" || TextUtils.isEmpty(orderID)) {
             Toast.makeText(
                 this,
-                "Please set the orderId (DropCheckoutActivity.class,  line: 26)",
+                "Please set the orderId",
                 Toast.LENGTH_SHORT
             ).show()
             finish()
             return
         }
-        if (token == "TOKEN" || TextUtils.isEmpty(token)) {
+        if (paymentSessionID == "TOKEN" || TextUtils.isEmpty(paymentSessionID)) {
             Toast.makeText(
                 this,
-                "Please set the token (DropCheckoutActivity.class,  line: 27)",
+                "Please set the paymentSessionId",
                 Toast.LENGTH_SHORT
             ).show()
             finish()
@@ -76,7 +73,7 @@ class UPIIntentActivity : AppCompatActivity(), CFCheckoutResponseCallback {
         try {
             val cfSession = CFSessionBuilder()
                 .setEnvironment(cfEnvironment)
-                .setPaymentSessionID(token)
+                .setPaymentSessionID(paymentSessionID)
                 .setOrderId(orderID)
                 .build()
             val cfTheme = CFIntentThemeBuilder()
@@ -95,8 +92,8 @@ class UPIIntentActivity : AppCompatActivity(), CFCheckoutResponseCallback {
                 .setCfUPIIntentCheckout(cfupiIntentCheckout)
                 .setCfIntentTheme(cfTheme)
                 .build()
-            val gatewayService = CFPaymentGatewayService.getInstance()
-            gatewayService.doPayment(this@UPIIntentActivity, cfupiIntentCheckoutPayment)
+            CFPaymentGatewayService.getInstance()
+                .doPayment(this@UPIIntentActivity, cfupiIntentCheckoutPayment)
         } catch (exception: CFException) {
             exception.printStackTrace()
         }

@@ -16,7 +16,7 @@ import com.cashfree.pg.core.api.utils.CFSubscriptionResponse
 import com.cashfree.pg.core.api.webcheckout.CFWebCheckoutTheme.CFWebCheckoutThemeBuilder
 import com.cashfree.sdk_sample.R
 
-class SubscriptionCheckoutActivity  : AppCompatActivity(), CFSubscriptionResponseCallback {
+class SubscriptionCheckoutActivity : AppCompatActivity(), CFSubscriptionResponseCallback {
 
     var subsID: String = "sub_1936672690"
     var subsSessionID: String =
@@ -70,8 +70,7 @@ class SubscriptionCheckoutActivity  : AppCompatActivity(), CFSubscriptionRespons
                         .build()
                 )
                 .build()
-            val gatewayService = CFPaymentGatewayService.getInstance()
-            gatewayService.doSubscriptionPayment(
+            CFPaymentGatewayService.getInstance().doSubscriptionPayment(
                 this@SubscriptionCheckoutActivity,
                 cfSubscriptionPayment
             )

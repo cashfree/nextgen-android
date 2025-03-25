@@ -31,7 +31,7 @@ public class UPIIntentActivity extends AppCompatActivity implements CFCheckoutRe
         setContentView(R.layout.activity_drop_checkout);
         try {
             CFPaymentGatewayService.getInstance().setCheckoutCallback(this);
-            doDropCheckoutPayment();
+            doUPIIntentCheckoutPayment();
         } catch (CFException e) {
             e.printStackTrace();
         }
@@ -57,14 +57,14 @@ public class UPIIntentActivity extends AppCompatActivity implements CFCheckoutRe
         finish();
     }
 
-    public void doDropCheckoutPayment() {
+    public void doUPIIntentCheckoutPayment() {
         if (orderID.equals("ORDER_ID") || TextUtils.isEmpty(orderID)) {
-            Toast.makeText(this,"Please set the orderId (DropCheckoutActivity.class,  line: 26)", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Please set the orderId", Toast.LENGTH_SHORT).show();
             finish();
             return;
         }
         if (paymentSessionID.equals("TOKEN") || TextUtils.isEmpty(paymentSessionID)) {
-            Toast.makeText(this,"Please set the token (DropCheckoutActivity.class,  line: 27)", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Please set the paymentSessionID ", Toast.LENGTH_SHORT).show();
             finish();
             return;
         }
@@ -90,8 +90,7 @@ public class UPIIntentActivity extends AppCompatActivity implements CFCheckoutRe
                     .setCfUPIIntentCheckout(cfupiIntentCheckout)
                     .setCfIntentTheme(cfTheme)
                     .build();
-            CFPaymentGatewayService gatewayService = CFPaymentGatewayService.getInstance();
-            gatewayService.doPayment(UPIIntentActivity.this, cfupiIntentCheckoutPayment);
+            CFPaymentGatewayService.getInstance().doPayment(UPIIntentActivity.this, cfupiIntentCheckoutPayment);
         } catch (CFException exception) {
             exception.printStackTrace();
         }

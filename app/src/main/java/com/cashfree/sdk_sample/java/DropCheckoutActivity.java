@@ -92,8 +92,7 @@ public class DropCheckoutActivity extends AppCompatActivity  implements  CFCheck
 //                        .setCFUIPaymentModes(cfPaymentComponent)
                     .setCFNativeCheckoutUITheme(cfTheme)
                     .build();
-            CFPaymentGatewayService gatewayService = CFPaymentGatewayService.getInstance();
-            gatewayService.doPayment(DropCheckoutActivity.this, cfDropCheckoutPayment);
+            CFPaymentGatewayService.getInstance().doPayment(DropCheckoutActivity.this, cfDropCheckoutPayment);
         } catch (CFException exception) {
             exception.printStackTrace();
         }
