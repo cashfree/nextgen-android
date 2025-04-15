@@ -52,7 +52,7 @@ class DropCheckoutActivity : AppCompatActivity(), CFCheckoutResponseCallback {
     }
 
     private fun doDropCheckoutPayment() {
-        Log.d(this@DropCheckoutActivity.localClassName, config.toString());
+        Log.d(this@DropCheckoutActivity.localClassName, config.toString())
         if (orderID == "ORDER_ID" || TextUtils.isEmpty(orderID)) {
             Toast.makeText(
                 this,
