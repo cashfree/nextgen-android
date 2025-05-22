@@ -26,10 +26,13 @@ import com.cashfree.pg.core.api.upi.CFUPI
 import com.cashfree.pg.core.api.upi.CFUPI.CFUPIBuilder
 import com.cashfree.pg.core.api.upi.CFUPIPayment.CFUPIPaymentBuilder
 import com.cashfree.pg.core.api.utils.CFErrorResponse
+import com.cashfree.pg.core.api.utils.CFUPIApp
+import com.cashfree.pg.core.api.utils.CFUPIUtil
 import com.cashfree.pg.core.api.wallet.CFWallet.CFWalletBuilder
 import com.cashfree.pg.core.api.wallet.CFWalletPayment.CFWalletPaymentBuilder
 import com.cashfree.sdk_sample.Config
 import com.cashfree.sdk_sample.R
+import java.util.ArrayList
 
 class ElementCheckoutActivity : AppCompatActivity(), CFCheckoutResponseCallback {
     private val config = Config()
@@ -334,6 +337,18 @@ class ElementCheckoutActivity : AppCompatActivity(), CFCheckoutResponseCallback 
     }
 
     fun doUPIIntentPayment(view: View?) {
+        CFUPIUtil.getInstalledUPIApps(this , object : CFUPIUtil.UPIAppsCallback {
+            override fun onUPIAppsFetched(upiAppList: ArrayList<CFUPIApp>?) {
+                upiAppList?.let {
+                    upiAppList.forEach { app->
+                        run {
+                            Log.d("UPIAPP", app.appId)
+                            Log.d("UPIAPP", app.displayName)
+                        }
+                    }
+                }
+            }
+        })
         initiatePayment(intentMode, upiAppPackage)
     }
 
