@@ -16,32 +16,34 @@ import com.cashfree.pg.core.api.utils.CFSubscriptionResponse
 import com.cashfree.pg.core.api.webcheckout.CFWebCheckoutTheme.CFWebCheckoutThemeBuilder
 import com.cashfree.sdk_sample.R
 
-class SubscriptionCheckoutActivity : AppCompatActivity(), CFSubscriptionResponseCallback {
+class SubscriptionCheckoutActivity : AppCompatActivity() {
 
-    var subsID: String = "sub_1936672690"
+    var subsID: String = "135285068"
     var subsSessionID: String =
-        "sub_session_Axr2QtKpKwh4_dQypuNwtkpy0uZ8wWbwejEv7gYqrsej2jfXDpQPfDfJr999H-ay9ipYx4-2ZIV6MXX-d7vodyuEHVpDDH43yavnmPiK9kTtNosm"
-    var cfEnvironment: CFSubscriptionSession.Environment = CFSubscriptionSession.Environment.SANDBOX
+        "sub_session_5USUO7xcEIShHekkHLKI9AsJ72an_CVBYR3jCRCEfi3beqvE0BeCzzXxRWbuBirVBKmDAWXMOUc6XC4HtwcA6_GU46Yo4k0payment"
+    var cfEnvironment: CFSubscriptionSession.Environment =
+        CFSubscriptionSession.Environment.PRODUCTION
+
+    private val callback : CFSubscriptionResponseCallback = object  : CFSubscriptionResponseCallback{
+        override fun onSubscriptionVerify(cfSubscriptionResponse: CFSubscriptionResponse?) {
+            Log.d("cashfree_subscription", "Kotlin onSubscriptionVerify")
+            finish()
+        }
+
+        override fun onSubscriptionFailure(cfErrorResponse: CFErrorResponse?) {
+            Log.d("cashfree_subscription", "Kotlin onPaymentFailure")
+            finish()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_drop_checkout)
         try {
-            CFPaymentGatewayService.getInstance().setSubscriptionCheckoutCallback(this)
             doSubscriptionCheckoutPayment()
         } catch (e: CFException) {
             e.printStackTrace()
         }
-    }
-
-    override fun onSubscriptionVerify(cfSubscriptionResponse: CFSubscriptionResponse?) {
-        Log.d("onSubscriptionVerify", "verifyPayment triggered")
-        finish()
-    }
-
-    override fun onSubscriptionFailure(cfErrorResponse: CFErrorResponse) {
-        Log.d("onPaymentFailure $subsID", cfErrorResponse.message)
-        finish()
     }
 
     private fun doSubscriptionCheckoutPayment() {
@@ -70,6 +72,8 @@ class SubscriptionCheckoutActivity : AppCompatActivity(), CFSubscriptionResponse
                         .build()
                 )
                 .build()
+
+            CFPaymentGatewayService.getInstance().setSubscriptionCheckoutCallback(callback)
             CFPaymentGatewayService.getInstance().doSubscriptionPayment(
                 this@SubscriptionCheckoutActivity,
                 cfSubscriptionPayment

@@ -17,34 +17,32 @@ import com.cashfree.pg.core.api.utils.CFSubscriptionResponse;
 import com.cashfree.pg.core.api.webcheckout.CFWebCheckoutTheme;
 import com.cashfree.sdk_sample.R;
 
-public class SubscriptionCheckoutActivity extends AppCompatActivity implements CFSubscriptionResponseCallback {
-    String subsID = "sub_1936672690";
-    String subsSessionID = "sub_session_Axr2QtKpKwh4_dQypuNwtkpy0uZ8wWbwejEv7gYqrsej2jfXDpQPfDfJr999H-ay9ipYx4-2ZIV6MXX-d7vodyuEHVpDDH43yavnmPiK9kTtNosm";
-    CFSubscriptionSession.Environment cfEnvironment = CFSubscriptionSession.Environment.SANDBOX;
+public class SubscriptionCheckoutActivity extends AppCompatActivity {
+    String subsID = "135285068";
+    String subsSessionID = "sub_session_5USUO7xcEIShHekkHLKI9AsJ72an_CVBYR3jCRCEfi3beqvE0BeCzzXxRWbuBirVBKmDAWXMOUc6XC4HtwcA6_GU46Yo4k0payment";
+    CFSubscriptionSession.Environment cfEnvironment = CFSubscriptionSession.Environment.PRODUCTION;
+
+    private final CFSubscriptionResponseCallback callback = new CFSubscriptionResponseCallback() {
+        @Override
+        public void onSubscriptionVerify(CFSubscriptionResponse cfSubscriptionResponse) {
+            Log.d("cashfree_subscription", "JAVA verifyPayment triggered"+ cfSubscriptionResponse.getSubscriptionId());
+            finish();
+        }
+
+        @Override
+        public void onSubscriptionFailure(CFErrorResponse cfErrorResponse) {
+            Log.d("cashfree_subscription " , "JAVA onSubscriptionFailure  "+ cfErrorResponse.getMessage());
+            finish();
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drop_checkout);
-        try {
-            CFPaymentGatewayService.getInstance().setSubscriptionCheckoutCallback(this);
-            doSubscriptionCheckoutPayment();
-        } catch (CFException e) {
-            e.printStackTrace();
-        }
+        doSubscriptionCheckoutPayment();
     }
 
-    @Override
-    public void onSubscriptionVerify(CFSubscriptionResponse cfSubscriptionResponse) {
-        Log.d("onSubscriptionVerify", "verifyPayment triggered");
-        finish();
-    }
-
-    @Override
-    public void onSubscriptionFailure(CFErrorResponse cfErrorResponse) {
-        Log.d("onPaymentFailure " + subsID, cfErrorResponse.getMessage());
-        finish();
-    }
 
     public void doSubscriptionCheckoutPayment() {
         if (subsID.equals("ORDER_ID") || TextUtils.isEmpty(subsID)) {
@@ -70,6 +68,9 @@ public class SubscriptionCheckoutActivity extends AppCompatActivity implements C
                             .setNavigationBarBackgroundColor("#d11b1b")
                             .build())
                     .build();
+
+            CFPaymentGatewayService.getInstance().setSubscriptionCheckoutCallback(callback);
+
             CFPaymentGatewayService.getInstance().doSubscriptionPayment(SubscriptionCheckoutActivity.this, cfSubscriptionPayment);
         } catch (CFException exception) {
             exception.printStackTrace();
