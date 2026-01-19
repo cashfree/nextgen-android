@@ -6,31 +6,50 @@
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/ll_container"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/cf_dimen_32"
         android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/subs_activity_flow"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Subscription in Activity Flow" />
+            android:text="Subscription Checkout in Activity Flow" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/subs_activity_helper_flow"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Subscription in Activity Helper" />
+            android:text="Subscription Checkout in Activity Helper" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/subs_fragment"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Subscription in Fragment Flow" />
+            android:text="Subscription Checkout in Fragment Flow" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/subs_element_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Subscription Card Element Flow" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/subs_element_upi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Subscription UPI Element Flow" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/subs_element_enach"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Subscription Enach Element Flow" />
 
 
     </androidx.appcompat.widget.LinearLayoutCompat>
@@ -38,6 +57,6 @@
     <FrameLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

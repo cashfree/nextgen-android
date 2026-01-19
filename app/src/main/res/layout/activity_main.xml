@@ -5,54 +5,50 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".java.MainActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:layout_marginHorizontal="@dimen/cf_dimen_32"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/dropCheckoutBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Drop Checkout"
-        android:onClick="startDropCheckout"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
-        />
+        <Button
+            android:id="@+id/dropCheckoutBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="startDropCheckout"
+            android:text="Drop Checkout (Deprecated)" />
 
-    <Button
-        android:id="@+id/elementCheckoutBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="startElementCheckout"
-        android:text="Element Checkout"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+        <Button
+            android:id="@+id/elementCheckoutBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="startElementCheckout"
+            android:text="PG SDK Element Flow" />
 
-    <Button
-        android:id="@+id/upiIntentCheckoutBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="UPI Intent Checkout"
-        android:onClick="startUPIIntentCheckout"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
-        />
+        <Button
+            android:id="@+id/upiIntentCheckoutBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="startUPIIntentCheckout"
+            android:text="UPI Intent Checkout" />
 
-    <Button
-        android:id="@+id/webCheckoutBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="startWebCheckout"
-        android:text="Web Checkout"/>
+        <Button
+            android:id="@+id/webCheckoutBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="startWebCheckout"
+            android:text="PG SDK Web Checkout" />
 
         <Button
             android:id="@+id/subscriptionCheckoutBtn"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="startSubscriptionCheckout"
-            android:text="Subscription Checkout"/>
+            android:text="Subscription Flow" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
