@@ -5,8 +5,8 @@ import com.cashfree.pg.core.api.upi.CFUPI
 
 data class Config(
     // CFSession Inputs
-    val orderID: String = "devstudio_7358447157883380991",
-    val paymentSessionID: String = "session_2enTe_c49-EprSNFPwGza6RpnJQ72H5mKAS1DOGvmzAOO8DG0FCz8TnQBzcfjn3hr1cH7xrDlPY0KOSre_RdK2_Y0cmBsFT6izd4-w6DGxyy_kUVf96cRcsIycYpayment",
+    val orderID: String = "devstudio_7422965212046079579",
+    val paymentSessionID: String = "session_6gV2Tr6C32BL1hzduBI1OpAU2dUiM_QJJWgmPvbxwOn6bVQH7YBjiue28_GBOLoXPV40kKctwmeoJssbRnEmW-et6kg4ClwwOqdWc3pJO4-Yo9G1P47NOhJaeyIpayment",
     val environment: CFSession.Environment = CFSession.Environment.SANDBOX,
 
     //Card Payment Inputs
