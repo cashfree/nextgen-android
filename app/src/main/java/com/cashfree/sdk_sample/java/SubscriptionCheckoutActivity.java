@@ -30,8 +30,8 @@ import com.cashfree.pg.core.api.webcheckout.CFWebCheckoutTheme;
 import com.cashfree.sdk_sample.R;
 
 public class SubscriptionCheckoutActivity extends AppCompatActivity {
-    String subsID = "devstudio_subs_7418928130455926161";
-    String subsSessionID = "sub_session_OESkkngNmnRUUPRKDMb-vEyK99yQBf03VuwSR79rIT5MGebGVw38JWgHShxXGkLD9E-bRsUXTspYuCXI-eHI5LKPjXc2U2Cq7BesykfOphjP2r0FxLjLeNvrde3C8XUpayment";
+    String subsID = "devstudio_subs_7442900796316249954";
+    String subsSessionID = "sub_session_o4QKx3oJwUAL0f3j0Tk9r03i0A1KtkH6aD8VrhnjZMEYRXLJ8xuUXGjCoRW_1pp0odyCRfwzJBDWShYaov1Qk0R4gnLsLwTsCS2rkcsvTZYipiA53Nunvdgy0WvhktEpayment";
     CFSubscriptionSession.Environment cfEnvironment = CFSubscriptionSession.Environment.SANDBOX;
 
     private AppCompatButton activityFlow, activtyHelperFlow, fragmentFlow;
@@ -224,6 +224,7 @@ public class SubscriptionCheckoutActivity extends AppCompatActivity {
                     .setAccountBankCode("SBIN")
                     .setAccountNumber("9876543210")
                     .setAccountType("SAVINGS")
+                    .setAuthMode("aadhaar")
                     .build();
             CFSubsNetBankingPayment cfSubsNetBankingPayment = new CFSubsNetBankingPayment.CFNetBankingPaymentBuilder()
                     .setSubscriptionSession(cfSession)
