@@ -10,8 +10,8 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        //maven { url = "https://maven.cashfree.com/development" }
-        maven { url = "https://maven.cashfree.com/release" }
+        maven { url = "https://maven.cashfree.com/development" }
+        //maven { url = "https://maven.cashfree.com/release" }
     }
 }
 rootProject.name = "Cashfree Android Sample"

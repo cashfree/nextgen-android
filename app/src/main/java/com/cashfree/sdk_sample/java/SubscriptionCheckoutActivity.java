@@ -24,19 +24,23 @@ import com.cashfree.pg.core.api.subscription.enach.CFSubsNetBanking;
 import com.cashfree.pg.core.api.subscription.enach.CFSubsNetBankingPayment;
 import com.cashfree.pg.core.api.subscription.upi.CFSubsUpi;
 import com.cashfree.pg.core.api.subscription.upi.CFSubsUpiPayment;
+import com.cashfree.pg.core.api.ui.CFSubsCardNumberView;
 import com.cashfree.pg.core.api.utils.CFErrorResponse;
 import com.cashfree.pg.core.api.utils.CFSubscriptionResponse;
 import com.cashfree.pg.core.api.webcheckout.CFWebCheckoutTheme;
 import com.cashfree.sdk_sample.R;
+import com.google.android.material.button.MaterialButton;
 
 public class SubscriptionCheckoutActivity extends AppCompatActivity {
-    String subsID = "devstudio_subs_7442900796316249954";
-    String subsSessionID = "sub_session_o4QKx3oJwUAL0f3j0Tk9r03i0A1KtkH6aD8VrhnjZMEYRXLJ8xuUXGjCoRW_1pp0odyCRfwzJBDWShYaov1Qk0R4gnLsLwTsCS2rkcsvTZYipiA53Nunvdgy0WvhktEpayment";
+    String subsID = "devstudio_subs_7450832316925049017";
+    String subsSessionID = "sub_session_vVVPj5HdnkCzSHrFs5FFd5dF4Z8nqnS8VAWYzjiCpgo3Fc4L9gKVBfq4bWpV2LeiiZblszxPKsR9AMVHt6NjrdQy5BG_cqgoRkEgyydFv7GqP33A3v4eSZaVcEb8PVgpayment";
     CFSubscriptionSession.Environment cfEnvironment = CFSubscriptionSession.Environment.SANDBOX;
 
     private AppCompatButton activityFlow, activtyHelperFlow, fragmentFlow;
     private AppCompatButton cardElement, upiElement, enachElement;
     private LinearLayoutCompat llContainer;
+    private CFSubsCardNumberView cfSubsCardNumberView;
+    private MaterialButton payViaSubsCustomCard;
 
     private SubscriptionHelper helper;
     private Fragment subscriptionFragment;
@@ -53,7 +57,17 @@ public class SubscriptionCheckoutActivity extends AppCompatActivity {
         upiElement = findViewById(R.id.subs_element_upi);
         enachElement = findViewById(R.id.subs_element_enach);
         llContainer = findViewById(R.id.ll_container);
+        cfSubsCardNumberView = findViewById(R.id.cf_subs_element_card);
+        payViaSubsCustomCard = findViewById(R.id.element_pay_card_subs);
         handleClick();
+
+        try {
+            cfSubsCardNumberView.initialize(getCFSubscriptionSession(), jsonObject -> {
+                Log.i("CFSubsCardNumberView", jsonObject.toString());
+            });
+        } catch (CFException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void handleClick() {
@@ -67,6 +81,7 @@ public class SubscriptionCheckoutActivity extends AppCompatActivity {
         cardElement.setOnClickListener(v -> openCardElementFlow());
         upiElement.setOnClickListener(v -> openUpiElementFlow());
         enachElement.setOnClickListener(v -> openEnachElementFlow());
+        payViaSubsCustomCard.setOnClickListener(v -> openCustomCardElementFlow());
     }
 
     private final CFSubscriptionResponseCallback callback = new CFSubscriptionResponseCallback() {
@@ -186,6 +201,41 @@ public class SubscriptionCheckoutActivity extends AppCompatActivity {
             exception.printStackTrace();
         }
 
+    }
+
+    private CFSubscriptionSession getCFSubscriptionSession() throws CFException {
+        return new CFSubscriptionSession.CFSubscriptionSessionBuilder()
+                .setEnvironment(cfEnvironment)
+                .setSubscriptionSessionID(subsSessionID)
+                .setSubscriptionId(subsID)
+                .build();
+    }
+
+    private void openCustomCardElementFlow() {
+        try {
+            CFSubscriptionSession cfSession = getCFSubscriptionSession();
+            CFSubsCard cfCard = new CFSubsCard.CFSubsCardBuilder()
+                    .setCardHolderName("Kishan")
+                    .setCardExpiryMonth("08")
+                    .setCardExpiryYear("29")
+                    .setCVV("950")
+                    .setCfCard(true) //This is mandatory for custom card component flow
+                    .build();
+            CFSubsCardPayment cfCardPayment = new CFSubsCardPayment.CFSubsCardPaymentBuilder()
+                    .setSubscriptionSession(cfSession)
+                    .setSubsCard(cfCard)
+                    .build();
+            CFTheme theme = new CFTheme.CFThemeBuilder()
+                    .setNavigationBarBackgroundColor("#6A2222")
+                    .setNavigationBarTextColor("#FFFFFF")
+                    .build();
+
+            cfCardPayment.setTheme(theme);
+            CFPaymentGatewayService.getInstance().setSubscriptionCheckoutCallback(callback);
+            cfSubsCardNumberView.doSubscriptionPayment(this, cfCardPayment);
+        } catch (CFException exception) {
+            exception.printStackTrace();
+        }
     }
 
     private void openUpiElementFlow() {
