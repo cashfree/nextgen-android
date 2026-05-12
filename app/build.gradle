@@ -5,14 +5,14 @@ plugins {
 }
 
 android {
-    compileSdk 37
+    compileSdk = 37
 
     defaultConfig {
-        namespace 'com.cashfree.sdk_sample'
-        minSdk 21
-        targetSdk 36
-        versionCode 1
-        versionName "1.0"
+        namespace = 'com.cashfree.sdk_sample'
+        minSdk = 21
+        targetSdk = 37
+        versionCode = 1
+        versionName = "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -22,7 +22,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled = true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.debug
         }
