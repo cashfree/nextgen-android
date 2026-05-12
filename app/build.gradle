@@ -4,12 +4,12 @@ plugins {
 }
 
 android {
-    compileSdk 35
+    compileSdk 36
 
     defaultConfig {
         namespace 'com.cashfree.sdk_sample'
         minSdk 21
-        targetSdk 35
+        targetSdk 36
         versionCode 1
         versionName "1.0"
 
@@ -61,5 +61,5 @@ dependencies {
     implementation 'androidx.compose.material3:material3'
     testImplementation 'junit:junit:4.13.2'
 
-    implementation 'com.cashfree.pg:api:2.3.3'
+    implementation 'com.cashfree.pg:api:2.4.0'
 }
