@@ -30,7 +30,7 @@ public class WebCheckoutActivity extends AppCompatActivity implements CFCheckout
         setContentView(R.layout.activity_drop_checkout);
         try {
             CFPaymentGatewayService.getInstance().setCheckoutCallback(this);
-            doDropCheckoutPayment();
+            doWebCheckoutPayment();
         } catch (CFException e) {
             e.printStackTrace();
         }
@@ -56,9 +56,9 @@ public class WebCheckoutActivity extends AppCompatActivity implements CFCheckout
         finish();
     }
 
-    public void doDropCheckoutPayment() {
+    public void doWebCheckoutPayment() {
         if (orderID.equals("ORDER_ID") || TextUtils.isEmpty(orderID)) {
-            Toast.makeText(this,"Please set the orderId (DropCheckoutActivity.class,  line: 21)", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Please set the orderId (WebCheckoutActivity.class,  line: 21)", Toast.LENGTH_SHORT).show();
             finish();
             return;
         }
